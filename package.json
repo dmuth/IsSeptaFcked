@@ -1,6 +1,8 @@
 {
-  "name": "node-example",
-  "version": "0.0.1",
+	"name": "Is-SEPTA-Fucked",
+	"version": "0.0.1",
+	"description": "Status checker for SEPTA's Train View platform",
+	"homepage": "http://www.IsSeptaFucked.com/",
   "dependencies": {
     "express": "2.5.x"
   },
