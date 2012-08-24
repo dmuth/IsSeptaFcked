@@ -15,10 +15,12 @@ var septa = require("./lib/septa/main.js");
 //
 var routes = {};
 routes["api"] = require("./routes/api.js");
+routes["api_raw"] = require("./routes/api_raw.js");
 routes["echo"] = require("./routes/echo.js");
 
 
 app.get("/api", routes["api"].go);
+app.get("/api/raw", routes["api_raw"].go);
 app.get("/echo", routes["echo"].go);
 
 app.get('/', function(request, response) {
