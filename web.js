@@ -40,6 +40,8 @@ app.get("/", function(request, response) {
 	}).seq(function(data) {
 		var status = data["trains"]["status"];
 
+		//status["late"] = []; // Debugging
+
 		//
 		// Jade documentation can be found at:
 		// https://github.com/visionmedia/jade
