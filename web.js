@@ -2,11 +2,10 @@
 var express = require('express');
 
 
-
 // TODO:
 //   request: headers: 'x-forwarded-for': 'real IP address'
 var app = express.createServer(express.logger());
-
+var seq = require("seq");
 var septa = require("./lib/septa/main.js");
 
 
@@ -18,20 +17,45 @@ routes["api"] = require("./routes/api.js");
 routes["api_raw"] = require("./routes/api_raw.js");
 routes["echo"] = require("./routes/echo.js");
 
-
 app.get("/api", routes["api"].go);
 app.get("/api/raw", routes["api_raw"].go);
 app.get("/echo", routes["echo"].go);
-
-app.get('/', function(request, response) {
-  response.send('Hello World!');
-});
 
 
 //
 // Set this up, mostly for our favicon.
 //
 app.use(express.static(__dirname + '/public'));
+
+//
+// Set our Views directory for Jade.
+//
+app.set("views", __dirname + "/views");
+
+app.get("/", function(request, response) {
+
+	seq().seq(function() {
+		septa.getData(this);
+
+	}).seq(function(data) {
+		var status = data["trains"]["status"];
+
+		//
+		// Jade documentation can be found at:
+		// https://github.com/visionmedia/jade
+		//
+		response.render("index.jade", {
+				"title": "Is SEPTA Fucked?",
+				"status": status["status"],
+				"late": status["late"]
+			});
+
+	}).catch(function(error) {
+		console.log("ERROR: web.js: /: " + error);
+
+	});
+
+});
 
 
 //
