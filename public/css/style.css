@@ -46,5 +46,8 @@ ul#trains {
 #message {
 	text-align: center; 
 	font-family: arial;
+	padding-left: 300px; 
+	width: 600px;
 }
+
 
