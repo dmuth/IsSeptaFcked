@@ -41,6 +41,7 @@ h1 {
 ul#trains {
 	padding-left: 400px; 
 	font-family: arial;
+	font-size: smaller;
 }
 
 #message {
