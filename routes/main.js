@@ -60,16 +60,16 @@ exports.go = function(request, response) {
 * This function checks our status, and decides what CSS class to tell our 
 * template to use.
 */
-function getStatusClass(in_status) {
+function getStatusClass(status) {
 
 	var retval = "status-unknown";
-	if (in_status == "not fucked") {
+	if (status == "not fucked") {
 		retval = "status-not-fcked";
 
-	} else if (in_status == "a little fucked") {
+	} else if (status == "a little fucked") {
 		retval = "status-a-little-fcked";
 
-	} else if (in_status == "fucked") {
+	} else if (status == "fucked") {
 			retval = "status-fcked";
 
 	} 
@@ -82,11 +82,11 @@ function getStatusClass(in_status) {
 /**
 * Get our message to display, based on our current status.
 */
-function getMessage(in_status, max_age) {
+function getMessage(status, max_age) {
 
 	var retval = "";
 
-	if (in_status == "(unknown)") {
+	if (status == "(unknown)") {
 		var minutes = Math.round(max_age / 60);
 		retval = util.format(
 				"Our last successful data from SEPTA is over %d minutes old. "
@@ -95,13 +95,13 @@ function getMessage(in_status, max_age) {
 				minutes
 				);
 
-	} else if (in_status == "fucked") {
+	} else if (status == "fucked") {
 		retval = "You may want to look into alternate forms of transportation.";
 
-	} else if (in_status == "a little fucked") {
+	} else if (status == "a little fucked") {
 		retval = "Check back here in a few minutes to see if things improve.";
 
-	} else if (in_status == "not fucked") {
+	} else if (status == "not fucked") {
 		retval = "All trains are running on or close to on time!";
 
 	}
