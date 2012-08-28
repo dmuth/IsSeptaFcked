@@ -14,12 +14,11 @@ h1 {
 	font-size: 36px;
 }
 
-#status {
+.status {
 	text-transform: uppercase; 
 	font-family: arial; 
 	text-align: center; 
 	font-size: 64px; 
-	padding-top: 50px;
 }
 
 .status-fcked {
