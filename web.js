@@ -1,9 +1,47 @@
 
 var express = require('express');
 
+//
+// Create an IP token for the logging system that lists the original IP, 
+// if there was a proxy involved.
+//
+express.logger.token("ip", function(request) {
 
-// TODO:
-//   request: headers: 'x-forwarded-for': 'real IP address'
+	var retval = "";
+
+	if (request["headers"] && request["headers"]["x-forwarded-for"]) {
+		//
+		// Proxied request
+		//
+		retval = request["headers"]["x-forwarded-for"];
+
+	} else if (request["socket"] && request["socket"]["remoteAddress"]) {
+		//
+		// Direct request
+		//
+		retval = request["socket"]["remoteAddress"];
+
+	} else if (request["socket"] && request["socket"]["socket"] 
+		&& request["socket"]["socket"]["remoteAddress"]) {
+		//
+		// God only knows what happened here...
+		//
+		retval = request["socket"]["socket"]["remoteAddress"];
+
+	}
+	
+	return(retval);
+
+});
+
+
+//
+// Tweak our default logging format to include the new IP token.
+//
+express.logger.format("default", 
+	':ip :remote-addr - - [:date] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"'
+	);
+
 var app = express.createServer(express.logger());
 var seq = require("seq");
 var septa = require("./lib/septa/main.js");
