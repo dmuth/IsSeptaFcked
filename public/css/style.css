@@ -40,6 +40,7 @@ h1 {
 }
 
 ul#trains {
+	list-style-position:inside;
 	font-family: arial;
 	font-size: smaller;
 }
