@@ -10,7 +10,28 @@ var util = require("util");
 var septa = require("../lib/septa/main.js");
 
 
-exports.go = function(request, response) {
+var production = false;
+
+
+/**
+* This function is called when the module is first loaded.
+*
+* @param boolean in_production Are we currently in production mode?
+*/
+module.exports = function(in_production) {
+
+	var retval = {};
+
+	production = in_production;
+
+	retval["go"] = go;
+
+	return(retval);
+
+} // End of exports()
+
+
+function go(request, response) {
 
 	seq().seq(function() {
 		septa.getData(this);
@@ -46,6 +67,7 @@ exports.go = function(request, response) {
 				"status_class": status_class,
 				"late": status["late"],
 				"message": message,
+				"production": production,
 			});
 
 	}).catch(function(error) {

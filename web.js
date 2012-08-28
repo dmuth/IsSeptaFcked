@@ -1,6 +1,9 @@
 
 var express = require('express');
 var logger = require("./lib/logger.js");
+var seq = require("seq");
+var septa = require("./lib/septa/main.js");
+var util = require("util");
 
 //
 // Install our custom logger so we can get the source IP behind a proxy.
@@ -9,16 +12,30 @@ logger.go(express.logger);
 
 
 var app = express.createServer(express.logger());
-var seq = require("seq");
-var septa = require("./lib/septa/main.js");
-var util = require("util");
+
+//
+// Are we running in production
+//
+var production = false;
+
+//
+// Check our environment.
+//
+app.configure("development", function() {
+	console.log("Running in development mode!");
+});
+
+app.configure("production", function() {
+	console.log("Running in PRODUCTION mode!");
+	production = true;
+});
 
 
 //
 // Associative array for all of our routes
 //
 var routes = {};
-routes["main"] = require("./routes/main.js");
+routes["main"] = require("./routes/main.js")(production);
 routes["api"] = require("./routes/api.js");
 routes["api_raw"] = require("./routes/api_raw.js");
 routes["echo"] = require("./routes/echo.js");
