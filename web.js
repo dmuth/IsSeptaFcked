@@ -7,6 +7,7 @@ var express = require('express');
 var app = express.createServer(express.logger());
 var seq = require("seq");
 var septa = require("./lib/septa/main.js");
+var util = require("util");
 
 
 //
@@ -39,7 +40,22 @@ app.get("/", function(request, response) {
 
 	}).seq(function(data) {
 		var status = data["trains"]["status"];
+
 		var message = "";
+
+		var time_t = Math.round(new Date().getTime() / 1000);
+		var age = time_t - data["trains"]["time_t"];
+		var max_age = 60 * 10;
+		//var max_age = 1; // Debugging
+
+		//
+		// If our data is too old, then we're going to ignore it.
+		//
+		if (age > max_age) {
+			status["status"] = "(unknown)";
+			status["late"] = [];
+		}
+
 
 		var status_class = "status-unknown";
 		if (status["status"] == "not fucked") {
@@ -52,9 +68,14 @@ app.get("/", function(request, response) {
 			status_class = "status-fcked";
 
 		} else {
+			var minutes = Math.round(max_age / 60);
 			message = 
-				"Haven't yet retrieved train data from SEPTA!"
-				;
+				util.format(
+					"Our last successful data from SEPTA is over %d minutes old. "
+					+ " We're not sure what's going on. "
+					+ "Please try refreshing this page again shortly.",
+					minutes
+					);
 
 		}
 
