@@ -23,6 +23,7 @@ var production = false;
 //
 app.configure("development", function() {
 	console.log("Running in development mode!");
+	//production = true; // Debugging
 });
 
 app.configure("production", function() {
