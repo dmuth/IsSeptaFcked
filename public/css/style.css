@@ -1,0 +1,50 @@
+/**
+* Our stylesheet.
+*/
+
+body {
+	background-color: black; 
+	color: white;
+}
+
+h1 {
+	text-transform: uppercase; 
+	font-family: arial; 
+	text-align: center; 
+	font-size: 36px;
+}
+
+#status {
+	text-transform: uppercase; 
+	font-family: arial; 
+	text-align: center; 
+	font-size: 64px; 
+	padding-top: 50px;
+}
+
+.status-fcked {
+	color: red;
+}
+
+.status-a-little-fcked {
+	color: yellow;
+}
+
+.status-not-fcked {
+	color: green;
+}
+
+.status-unknown {
+	color: gray;
+}
+
+ul#trains {
+	padding-left: 400px; 
+	font-family: arial;
+}
+
+#message {
+	text-align: center; 
+	font-family: arial;
+}
+

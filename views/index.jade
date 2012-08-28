@@ -1,13 +1,18 @@
 
-body(style = "background-color: black; color: white; ")
+body
 
-	h1(style = "text-transform: uppercase; font-family: arial; text-align: center; font-size: 36px; " ) #{title}
+	h1 #{title}
 
-	div(style = "text-transform: uppercase; font-family: arial; text-align: center; font-size: 64px; padding-top: 50px; ").
-		Regional Rail is #{status}
+	div#status
+		span Regional Rail is 
+		span(class = "#{status_class}") #{status}
 
-	ul(style = "padding-left: 400px; font-family: arial; ")
-		each train in late
-			li #{train}
+	ul#trains
+		if (late)
+			each train in late
+				li #{train}
+
+	if (message)
+		div#message #{message}
 
 

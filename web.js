@@ -39,8 +39,24 @@ app.get("/", function(request, response) {
 
 	}).seq(function(data) {
 		var status = data["trains"]["status"];
+		var message = "";
 
-		//status["late"] = []; // Debugging
+		var status_class = "status-unknown";
+		if (status["status"] == "not fucked") {
+			status_class = "status-not-fcked";
+
+		} else if (status["status"] == "a little fucked") {
+			status_class = "status-a-little-fcked";
+
+		} else if (status["status"] == "fucked") {
+			status_class = "status-fcked";
+
+		} else {
+			message = 
+				"Haven't yet retrieved train data from SEPTA!"
+				;
+
+		}
 
 		//
 		// Jade documentation can be found at:
@@ -49,7 +65,9 @@ app.get("/", function(request, response) {
 		response.render("index.jade", {
 				"title": "Is SEPTA Fucked?",
 				"status": status["status"],
-				"late": status["late"]
+				"status_class": status_class,
+				"late": status["late"],
+				"message": message,
 			});
 
 	}).catch(function(error) {
