@@ -1,0 +1,6 @@
+
+#
+# Ignore .vi swapfiles
+#
+*.swp
+
