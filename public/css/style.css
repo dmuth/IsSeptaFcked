@@ -7,17 +7,19 @@ body {
 	color: white;
 }
 
+#main {
+	text-align: center;
+}
+
 h1 {
 	text-transform: uppercase; 
 	font-family: arial; 
-	text-align: center; 
 	font-size: 36px;
 }
 
 .status {
 	text-transform: uppercase; 
 	font-family: arial; 
-	text-align: center; 
 	font-size: 64px; 
 }
 
@@ -38,16 +40,15 @@ h1 {
 }
 
 ul#trains {
-	padding-left: 400px; 
 	font-family: arial;
 	font-size: smaller;
 }
 
 #message {
-	text-align: center; 
 	font-family: arial;
-	padding-left: 300px; 
 	width: 600px;
+	/* Center this block */
+	margin-left: auto; 	margin-right: auto;
 }
 
 
