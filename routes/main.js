@@ -42,7 +42,7 @@ exports.go = function(request, response) {
 		//
 		response.render("index.jade", {
 				"title": "Is SEPTA Fucked?",
-				"status": status["status"],
+				"train_status": status["status"],
 				"status_class": status_class,
 				"late": status["late"],
 				"message": message,
