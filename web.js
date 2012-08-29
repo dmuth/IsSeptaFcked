@@ -40,11 +40,14 @@ routes["main"] = require("./routes/main.js")(production);
 routes["api"] = require("./routes/api.js");
 routes["api_raw"] = require("./routes/api_raw.js");
 routes["echo"] = require("./routes/echo.js");
+routes["faq"] = require("./routes/faq.js")(production);
+
 
 app.get("/", routes["main"].go);
 app.get("/api", routes["api"].go);
 app.get("/api/raw", routes["api_raw"].go);
 app.get("/echo", routes["echo"].go);
+app.get("/faq", routes["faq"].go);
 
 
 //
