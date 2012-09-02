@@ -6,6 +6,7 @@
 */
 
 var seq = require("seq");
+var sfw = require("../lib/sfw.js");
 var util = require("util");
 var septa = require("../lib/septa/main.js");
 
@@ -33,15 +34,24 @@ module.exports = function(in_production) {
 
 function go(request, response) {
 
-	if (request["headers"] && request["headers"]["host"]) {
-		console.log("Our hostname requested: " + request["headers"]["host"]);
-	}
+	var is_sfw = sfw.is_sfw(request);
 
 	var time_t = new Date().getTime() / 1000;
 	seq().seq(function() {
 		septa.getData(this);
 
 	}).seq(function(data) {
+
+		//
+		// If in SFW mode, turn our array into a string, 
+		// filter it, and turn it back into an object
+		//
+		if (is_sfw) {
+			data = JSON.stringify(data);
+			data = sfw.filter(data);
+			data = JSON.parse(data);
+		}
+
 		var status = data["trains"]["status"];
 
 		var message = "";
@@ -62,21 +72,33 @@ function go(request, response) {
 		// Jade documentation can be found at:
 		// https://github.com/visionmedia/jade
 		//
+		var title = "Is SEPTA Fucked?";
+		if (is_sfw) {
+			title = sfw.filter(title);
+		}
+
 		response.render("index.jade", {
-				"title": "Is SEPTA Fucked?",
+				"title": title,
 				"train_status": status["status"],
 				"train_status_time": data["trains"]["time"],
-				"status_class": status["css_class"],
-				"late": status["late"],
+
 				"message": status["message"],
+				"late": status["late"],
+				"status_class": status["css_class"],
+
+				"is_sfw": is_sfw,
 				"production": production,
 				"refresh": 300,
+
 			}, this);
 
 	}).seq(function(html) {
 		//
 		// Send our response
 		//
+		if (is_sfw) {
+			html = sfw.filter(html);
+		}
 		response.send(html);
 
 		//

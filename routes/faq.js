@@ -6,6 +6,7 @@
 */
 
 var seq = require("seq");
+var sfw = require("../lib/sfw.js");
 var util = require("util");
 var septa = require("../lib/septa/main.js");
 
@@ -33,9 +34,17 @@ module.exports = function(in_production) {
 
 function go(request, response) {
 
+	var is_sfw = sfw.is_sfw(request);
+
+	var title = "Is SEPTA Fucked?";
+	if (is_sfw) {
+		title = sfw.filter(title);
+	}
+
 	response.render("faq.jade", {
-		"title": "Is SEPTA Fucked?",
+		"title": title,
 		"production": production,
+		"is_sfw": is_sfw,
 		});
 
 } // End of go()
