@@ -89,6 +89,7 @@ function go(request, response) {
 				"is_sfw": is_sfw,
 				"production": production,
 				"refresh": 300,
+				"uri": request["url"],
 
 			}, this);
 

@@ -45,6 +45,7 @@ function go(request, response) {
 		"title": title,
 		"production": production,
 		"is_sfw": is_sfw,
+		"uri": request["url"],
 		});
 
 } // End of go()
