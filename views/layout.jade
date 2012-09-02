@@ -10,10 +10,10 @@ html
 		meta(name="description", content="Status dashboard for SEPTA Regional Rail trains")
 
 		//-
-		//- If we're in production, reload this page every 5 minutes.
+		//- If we have a refresh value, set it.
 		//-
-		if (production) 
-			meta(http-equiv="refresh", content="300")
+		if ( typeof(refresh) != "undefined")
+			meta(http-equiv="refresh", content="#{refresh}")
 
 	body!= body
 
