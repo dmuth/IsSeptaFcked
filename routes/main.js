@@ -33,6 +33,7 @@ module.exports = function(in_production) {
 
 function go(request, response) {
 
+	var time_t = new Date().getTime() / 1000;
 	seq().seq(function() {
 		septa.getData(this);
 
@@ -41,8 +42,7 @@ function go(request, response) {
 
 		var message = "";
 
-		var time_t = Math.round(new Date().getTime() / 1000);
-		var age = time_t - data["trains"]["time_t"];
+		var age = Math.round(time_t) - data["trains"]["time_t"];
 		var max_age = 60 * 10;
 		//var max_age = 1; // Debugging
 
@@ -65,7 +65,23 @@ function go(request, response) {
 				"late": status["late"],
 				"message": status["message"],
 				"production": production,
-			});
+				"refresh": 300,
+			}, this);
+
+	}).seq(function(html) {
+		//
+		// Send our response
+		//
+		response.send(html);
+
+		//
+		// Now calculate how long it took to load and render 
+		// our text, and print that out.
+		//
+		var time_t_after = new Date().getTime() / 1000;
+		var diff = Math.round((time_t_after - time_t) * 1000) / 1000;
+		var message = util.format("Page rendered in %d seconds", diff);
+		console.log(message);
 
 	}).catch(function(error) {
 		console.log("ERROR: web.js: /: " + error);
