@@ -79,4 +79,6 @@ ul#trains {
 }
 
 
-
+#status-time {
+	font-size: smaller;
+}

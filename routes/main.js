@@ -61,6 +61,7 @@ function go(request, response) {
 		response.render("index.jade", {
 				"title": "Is SEPTA Fucked?",
 				"train_status": status["status"],
+				"train_status_time": data["trains"]["time"],
 				"status_class": status["css_class"],
 				"late": status["late"],
 				"message": status["message"],
