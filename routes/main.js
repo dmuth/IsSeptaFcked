@@ -33,6 +33,10 @@ module.exports = function(in_production) {
 
 function go(request, response) {
 
+	if (request["headers"] && request["headers"]["host"]) {
+		console.log("Our hostname requested: " + request["headers"]["host"]);
+	}
+
 	var time_t = new Date().getTime() / 1000;
 	seq().seq(function() {
 		septa.getData(this);
