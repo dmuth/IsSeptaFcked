@@ -1,0 +1,11 @@
+//-
+//- This template is used to display our SFW/NSFW links
+//-
+
+if ( typeof(is_sfw) != "undefined")
+	//- var is_sfw = true; // Debugging
+	if (is_sfw)
+		a(href="http://www.isseptafucked.com#{uri}") NSFW Version
+	else
+		a(href="http://www.isseptafcked.com#{uri}") SFW Version
+
