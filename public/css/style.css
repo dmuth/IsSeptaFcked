@@ -78,6 +78,18 @@ ul#trains {
 	padding-right: 20px;
 }
 
+/**
+* Pin this element to the lower left of the browser window.
+*/
+.upper-left {
+	position: fixed; 
+	left: 0; top: 0; 
+	padding-bottom: 20px; 
+	padding-left: 20px;
+	padding-top: 20px;
+	padding-right: 20px;
+}
+
 
 #status-time {
 	font-size: smaller;
