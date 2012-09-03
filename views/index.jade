@@ -39,11 +39,26 @@ div#main
 if (production)
 	include google_analytics
 
-// -
-// - Our Facebook "like" widget
-// -
 div.upper-left
+	//-
+	//- Our Facebook "like" widget
+	//-
 	<div class="fb-like" data-href="https://www.facebook.com/IsSeptaFcked" data-send="true" data-layout="button_count" data-width="300" data-show-faces="true" data-colorscheme="dark" data-font="arial"></div>
+	//- 
+	//- Google +1 button
+	//- 
+	p <div class="g-plusone" data-size="medium" data-href="http://www.isseptafcked.com/"></div>
+
+//-
+//- For Google +1 button
+//-
+script(type='text/javascript')
+	(function() {
+	var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	po.src = 'https://apis.google.com/js/plusone.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	})();
+
 
 div.lower-left
 	a(href="/faq") FAQ and Explanation
