@@ -17,3 +17,9 @@ html
 
 	body!= body
 
+//-
+//- If we're running in production, display our Google Apps code
+//-
+if (production)
+	include google_analytics
+
