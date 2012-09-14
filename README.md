@@ -33,24 +33,22 @@ Architecture Overview
 For fellow nerds out there, here's a brief rundown on how the various 
 	node.js modules are laid out:
 
-views/ - Jade templates for public facing pages.
-public/ - CSS and the site's robots.txt
-node_modules/ - Modules installed with npm.  One school of thought says 
+- views/ - Jade templates for public facing pages.
+- public/ - CSS and the site's robots.txt
+- node_modules/ - Modules installed with npm.  One school of thought says 
 	I should just rely on the site's install.js file.  But I always felt 
 	that a "git clone" operation should provide a complete working copy 
 	of the software.  I may revise this decision when that directory 
 	gets sufficently large. ;-)
-
-lib/logger.js - Handles custom logging in Express.  Heroku uses proxies, 
+- lib/logger.js - Handles custom logging in Express.  Heroku uses proxies, 
 	and I would like to log the IP that incoming requests are forwarded for.
-lib/api.js - Module that actually connects to SEPTA's API, and translates 
+- lib/api.js - Module that actually connects to SEPTA's API, and translates 
 	their data into something we can actually use.
-lib/main.js - The main function in here is called at Express boot time,
+- lib/main.js - The main function in here is called at Express boot time,
 	and it is responsible for calling SEPTA's API once a minute.
 	It is also responsible for determing the level of "fuckedness" of Regional Rail. 
-lib/text.js - Create messages based on the lateness data.
-
-lib/sfw.js - Makes the determination if we are running under the SFW 
+- lib/text.js - Create messages based on the lateness data.
+- lib/sfw.js - Makes the determination if we are running under the SFW 
 	domain, and does filtering of strings.
 
 
