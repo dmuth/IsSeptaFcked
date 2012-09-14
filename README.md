@@ -50,6 +50,7 @@ For fellow nerds out there, here's a brief rundown on how the various
 - lib/text.js - Create messages based on the lateness data.
 - lib/sfw.js - Makes the determination if we are running under the SFW 
 	domain, and does filtering of strings.
+- routes/ - Each file in here corresponds to the same named URI, and handles requests to that URI.
 
 
 
