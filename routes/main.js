@@ -52,11 +52,11 @@ function go(request, response) {
 			data = JSON.parse(data);
 		}
 
-		var status = data["trains"]["status"];
+		var status = data["status"];
 
 		var message = "";
 
-		var age = Math.round(time_t) - data["trains"]["time_t"];
+		var age = Math.round(time_t) - data["time_t"];
 		var max_age = 60 * 10;
 		//var max_age = 1; // Debugging
 
@@ -80,7 +80,7 @@ function go(request, response) {
 		response.render("index.jade", {
 				"title": title,
 				"train_status": status["status"],
-				"train_status_time": data["trains"]["time"],
+				"train_status_time": data["time"],
 
 				"message": status["message"],
 				"late": status["late"],
