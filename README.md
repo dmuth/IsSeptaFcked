@@ -42,12 +42,12 @@ For fellow nerds out there, here's a brief rundown on how the various
 	gets sufficently large. ;-)
 - lib/logger.js - Handles custom logging in Express.  Heroku uses proxies, 
 	and I would like to log the IP that incoming requests are forwarded for.
-- lib/api.js - Module that actually connects to SEPTA's API, and translates 
+- lib/septa/rr/api.js - Module that actually connects to SEPTA's API, and translates 
 	their data into something we can actually use.
-- lib/main.js - The main function in here is called at Express boot time,
+- lib/septa/rr/main.js - The main function in here is called at Express boot time,
 	and it is responsible for calling SEPTA's API once a minute.
 	It is also responsible for determing the level of "fuckedness" of Regional Rail. 
-- lib/text.js - Create messages based on the lateness data.
+- lib/septa/rr/text.js - Create messages based on the lateness data.
 - lib/sfw.js - Makes the determination if we are running under the SFW 
 	domain, and does filtering of strings.
 - routes/ - Each file in here corresponds to the same named URI, and handles requests to that URI.

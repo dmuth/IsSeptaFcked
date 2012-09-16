@@ -6,7 +6,7 @@
 */
 
 
-var septa = require("../lib/septa/main.js");
+var septa = require("../lib/septa/rr/main.js");
 var util = require("util");
 
 
