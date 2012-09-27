@@ -36,12 +36,14 @@ function go(request, response) {
 
 	var is_sfw = sfw.is_sfw(request);
 
-	var title = "Is SEPTA Fucked?";
+	var title_home = "Is SEPTA Fucked?";
+	var title = "FAQ - " + title_home;
 	if (is_sfw) {
 		title = sfw.filter(title);
 	}
 
 	response.render("faq.jade", {
+		"title_home": title_home,
 		"title": title,
 		"production": production,
 		"is_sfw": is_sfw,

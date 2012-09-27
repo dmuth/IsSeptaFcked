@@ -17,7 +17,12 @@ exports.go = function(request, response) {
 
 	var retval = "";
 
-	septa.getRawData(function(error, data) {
+	septa.getRawData(function(error, in_data) {
+
+		var data = {};
+		data["data"] = in_data;
+		data["_comment"] = "Raw Regional Rail data from SEPTA";
+
 		retval += JSON.stringify(data, null, 4);
 		response.send(retval);
 

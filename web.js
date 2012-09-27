@@ -37,15 +37,17 @@ app.configure("production", function() {
 //
 var routes = {};
 routes["main"] = require("./routes/main.js")(production);
-routes["api"] = require("./routes/api.js");
-routes["api_raw"] = require("./routes/api_raw.js");
+routes["api"] = require("./routes/api.js")(production);
+routes["api/rr"] = require("./routes/api-rr.js");
+routes["api/rr/raw_data"] = require("./routes/api-rr-raw.js");
 routes["echo"] = require("./routes/echo.js");
 routes["faq"] = require("./routes/faq.js")(production);
 
 
 app.get("/", routes["main"].go);
 app.get("/api", routes["api"].go);
-app.get("/api/raw", routes["api_raw"].go);
+app.get("/api/rr", routes["api/rr"].go);
+app.get("/api/rr/raw_data", routes["api/rr/raw_data"].go);
 app.get("/echo", routes["echo"].go);
 app.get("/faq", routes["faq"].go);
 
