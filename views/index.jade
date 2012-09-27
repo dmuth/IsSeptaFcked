@@ -2,15 +2,8 @@
 //-
 //- Load Facebook's Javascript SDK
 //-
-<div id="fb-root"></div>
-script(type='text/javascript')
-	(function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s); js.id = id;
-	js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=230671247055726";
-	fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
+include lib/facebook-sdk
+include lib/google-plus-sdk
 
 div#main
 
@@ -32,27 +25,8 @@ div#main
 	div#status-time.
 		Train data last updated: #{train_status_time}
 
-
 div.upper-left
-	//-
-	//- Our Facebook "like" widget
-	//-
-	<div class="fb-like" data-href="https://www.facebook.com/IsSeptaFcked" data-send="true" data-layout="button_count" data-width="300" data-show-faces="true" data-colorscheme="dark" data-font="arial"></div>
-	//- 
-	//- Google +1 button
-	//- 
-	p <div class="g-plusone" data-size="medium" data-href="http://www.isseptafcked.com/"></div>
-
-//-
-//- For Google +1 button
-//-
-script(type='text/javascript')
-	(function() {
-	var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-	po.src = 'https://apis.google.com/js/plusone.js';
-	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-	})();
-
+	include lib/social-widgets
 
 div.lower-left
 	a(href="/faq") FAQ and Explanation
