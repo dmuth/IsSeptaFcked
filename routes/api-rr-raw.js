@@ -24,6 +24,12 @@ exports.go = function(request, response) {
 		data["_comment"] = "Raw Regional Rail data from SEPTA";
 
 		retval += JSON.stringify(data, null, 4);
+
+		//
+		// Make this readable in the web browser.
+		//
+		response.header("Content-Type", "text/json");
+
 		response.send(retval);
 
 	});
