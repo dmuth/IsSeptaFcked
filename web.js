@@ -2,7 +2,9 @@
 var express = require('express');
 var logger = require("./lib/logger.js");
 var seq = require("seq");
-var septa = require("./lib/septa/rr/main.js");
+var septa_rr = require("./lib/septa/rr/main.js");
+var septa_bus = require("./lib/septa/bus/main.js");
+
 var util = require("util");
 
 //
@@ -40,6 +42,8 @@ routes["main"] = require("./routes/main.js")(production);
 routes["api"] = require("./routes/api.js")(production);
 routes["api/rr"] = require("./routes/api-rr.js");
 routes["api/rr/raw_data"] = require("./routes/api-rr-raw.js");
+routes["api/bus"] = require("./routes/api-bus.js");
+routes["api/bus/raw_data"] = require("./routes/api-bus-raw.js");
 routes["echo"] = require("./routes/echo.js");
 routes["faq"] = require("./routes/faq.js")(production);
 
@@ -48,6 +52,8 @@ app.get("/", routes["main"].go);
 app.get("/api", routes["api"].go);
 app.get("/api/rr", routes["api/rr"].go);
 app.get("/api/rr/raw_data", routes["api/rr/raw_data"].go);
+app.get("/api/bus", routes["api/bus"].go);
+app.get("/api/bus/raw_data", routes["api/bus/raw_data"].go);
 app.get("/echo", routes["echo"].go);
 app.get("/faq", routes["faq"].go);
 
@@ -66,7 +72,8 @@ app.set("views", __dirname + "/views");
 //
 // Start up the SEPTA sub-system, specifically fetching from the API.
 //
-septa.boot();
+septa_rr.boot();
+septa_bus.boot();
 
 
 //
