@@ -10,6 +10,7 @@ var sfw = require("../lib/sfw.js");
 var util = require("util");
 var septa_rr = require("../lib/septa/rr/main.js");
 var septa_bus = require("../lib/septa/bus/main.js");
+var text_rr = require("../lib/septa/rr/text.js");
 
 
 var production = false;
@@ -70,7 +71,7 @@ function go(request, response) {
 
 		var rr_age = Math.round(time_t) - data_rr["time_t"];
 		var rr_max_age = 60 * 10;
-		//var max_age = 1; // Debugging
+		//var rr_max_age = 1; // Debugging
 
 		//
 		// If our data is too old, then we're going to ignore it.
@@ -78,6 +79,7 @@ function go(request, response) {
 		if (rr_age > rr_max_age) {
 			rr_status["status"] = "(unknown)";
 			rr_status["late"] = [];
+			rr_status["css_class"] = text_rr.getStatusClass(rr_status["status"]);
 		}
 
 		//
