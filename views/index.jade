@@ -3,6 +3,9 @@ div#main
 
 	h1.title #{title}
 
+	//-
+	//- Regional Rail Status
+	//-
 	div.status
 		span Regional Rail is 
 	div.status
@@ -18,6 +21,30 @@ div#main
 	p
 	div#status-time.
 		Train data last updated: #{rr_status_time}
+
+	br
+	br
+	br
+
+	//-
+	//- Bus status
+	//-
+	div.status
+		span Busses are
+	div.status
+		span(class = "#{bus_status_class}") #{bus_status}
+
+	ul#busses
+		if (bus_suspended)
+			each bus in bus_suspended
+				li #{bus}
+
+	if (bus_message)
+		div#message #{bus_message}
+	p
+	div#status-time.
+		Bus data last updated: #{bus_status_time}
+
 
 //-
 //- Social widgets.

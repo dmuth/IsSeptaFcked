@@ -51,6 +51,11 @@ ul#trains {
 	font-size: smaller;
 }
 
+ul#busses {
+	list-style-position:inside;
+	font-size: smaller;
+}
+
 #message {
 	width: 600px;
 	/* Center this block */
