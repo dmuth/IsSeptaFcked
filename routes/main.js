@@ -9,6 +9,7 @@ var seq = require("seq");
 var sfw = require("../lib/sfw.js");
 var util = require("util");
 var septa_rr = require("../lib/septa/rr/main.js");
+var septa_bus = require("../lib/septa/bus/main.js");
 
 
 var production = false;
@@ -32,6 +33,9 @@ module.exports = function(in_production) {
 } // End of exports()
 
 
+/**
+* Our main entry point.
+*/
 function go(request, response) {
 
 	var is_sfw = sfw.is_sfw(request);
@@ -43,9 +47,10 @@ function go(request, response) {
 
 	}).seq(function(in_data) {
 		data["rr"] = in_data;
-		this(null, data);
+		septa_bus.getData(this);
 
-	}).seq(function(data) {
+	}).seq(function(in_data) {
+		data["bus"] = in_data;
 
 		//
 		// If in SFW mode, turn our array into a string, 
@@ -59,20 +64,20 @@ function go(request, response) {
 
 		var data_rr = data["rr"];
 
-		var status = data_rr["status"];
+		var rr_status = data_rr["status"];
 
 		var message = "";
 
-		var age = Math.round(time_t) - data_rr["time_t"];
-		var max_age = 60 * 10;
+		var rr_age = Math.round(time_t) - data_rr["time_t"];
+		var rr_max_age = 60 * 10;
 		//var max_age = 1; // Debugging
 
 		//
 		// If our data is too old, then we're going to ignore it.
 		//
-		if (age > max_age) {
-			status["status"] = "(unknown)";
-			status["late"] = [];
+		if (rr_age > rr_max_age) {
+			rr_status["status"] = "(unknown)";
+			rr_status["late"] = [];
 		}
 
 		//
@@ -86,12 +91,12 @@ function go(request, response) {
 
 		response.render("index.jade", {
 				"title": title,
-				"rr_status": status["status"],
+				"rr_status": rr_status["status"],
 				"rr_status_time": data_rr["time"],
 
-				"rr_message": status["message"],
-				"rr_late": status["late"],
-				"rr_status_class": status["css_class"],
+				"rr_message": rr_status["message"],
+				"rr_late": rr_status["late"],
+				"rr_status_class": rr_status["css_class"],
 
 				"is_sfw": is_sfw,
 				"production": production,
