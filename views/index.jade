@@ -30,11 +30,11 @@ div#main
 	//- Bus status
 	//-
 	div.status
-		span Busses are
+		span Buses are
 	div.status
 		span(class = "#{bus_status_class}") #{bus_status}
 
-	ul#busses
+	ul#buses
 		if (bus_suspended)
 			each bus in bus_suspended
 				li #{bus}
