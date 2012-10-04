@@ -65,20 +65,10 @@ function go(request, response) {
 		}
 
 		var data_rr = data["rr"];
-		var rr_status = data_rr["status"];
+		var rr_status = getStatusFromRrData(time_t, data_rr);
 
-		var rr_age = Math.round(time_t) - data_rr["time_t"];
-		var rr_max_age = 60 * 10;
-		//var rr_max_age = 1; // Debugging
-
-		//
-		// If our data is too old, then we're going to ignore it.
-		//
-		if (rr_age > rr_max_age) {
-			rr_status["status"] = "(unknown)";
-			rr_status["late"] = [];
-			rr_status["css_class"] = text_rr.getStatusClass(rr_status["status"]);
-		}
+		var data_bus = data["bus"];
+		var bus_status = getStatusFromBusData(time_t, data_bus);
 
 		//
 		// Jade documentation can be found at:
@@ -91,12 +81,24 @@ function go(request, response) {
 
 		response.render("index.jade", {
 				"title": title,
-				"rr_status": rr_status["status"],
-				"rr_status_time": data_rr["time"],
 
-				"rr_message": rr_status["message"],
-				"rr_late": rr_status["late"],
+				//
+				// Regional Rail data
+				//
+				"rr_status": rr_status["status"],
 				"rr_status_class": rr_status["css_class"],
+				"rr_status_time": data_rr["time"],
+				"rr_late": rr_status["late"],
+				"rr_message": rr_status["message"],
+
+				//
+				// Bus data
+				//
+				"bus_status": bus_status["status"],
+				"bus_status_class": bus_status["css_class"],
+				"bus_status_time": data_bus["time"],
+				"bus_suspended": bus_status["suspended"],
+				"bus_message": bus_status["message"],
 
 				"is_sfw": is_sfw,
 				"production": production,
@@ -129,5 +131,55 @@ function go(request, response) {
 	});
 
 } // End of go()
+
+
+/**
+* Grab our status data and check it for age.
+*/
+function getStatusFromRrData(time_t, data) {
+
+	var retval = data["status"];
+
+	var age = Math.round(time_t) - data["time_t"];
+	var max_age = 60 * 10;
+	//var max_age = 1; // Debugging
+
+	//
+	// If our data is too old, then we're going to ignore it.
+	//
+	if (age > max_age) {
+		retval["status"] = "(unknown)";
+		retval["late"] = [];
+		retval["css_class"] = text_rr.getStatusClass(retval["status"]);
+	}
+
+	return(retval);
+
+} // End of getStatusFromRrData()
+
+
+/**
+* Grab our status data and check it for age.
+*/
+function getStatusFromBusData(time_t, data) {
+
+	var retval = data["status"];
+
+	var age = Math.round(time_t) - data["time_t"];
+	var max_age = 60 * 10;
+	//var max_age = 1; // Debugging
+
+	//
+	// If our data is too old, then we're going to ignore it.
+	//
+	if (age > max_age) {
+		retval["status"] = "(unknown)";
+		retval["late"] = [];
+		retval["css_class"] = text_bus.getStatusClass(retval["status"]);
+	}
+
+	return(retval);
+
+} // End of getStatusFromBusData()
 
 
