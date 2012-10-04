@@ -8,7 +8,7 @@
 var seq = require("seq");
 var sfw = require("../lib/sfw.js");
 var util = require("util");
-var septa = require("../lib/septa/rr/main.js");
+var septa_rr = require("../lib/septa/rr/main.js");
 
 
 var production = false;
@@ -35,10 +35,15 @@ module.exports = function(in_production) {
 function go(request, response) {
 
 	var is_sfw = sfw.is_sfw(request);
+	var data = {};
 
 	var time_t = new Date().getTime() / 1000;
 	seq().seq(function() {
-		septa.getData(this);
+		septa_rr.getData(this);
+
+	}).seq(function(in_data) {
+		data["rr"] = in_data;
+		this(null, data);
 
 	}).seq(function(data) {
 
@@ -52,11 +57,13 @@ function go(request, response) {
 			data = JSON.parse(data);
 		}
 
-		var status = data["status"];
+		var data_rr = data["rr"];
+
+		var status = data_rr["status"];
 
 		var message = "";
 
-		var age = Math.round(time_t) - data["time_t"];
+		var age = Math.round(time_t) - data_rr["time_t"];
 		var max_age = 60 * 10;
 		//var max_age = 1; // Debugging
 
@@ -79,12 +86,12 @@ function go(request, response) {
 
 		response.render("index.jade", {
 				"title": title,
-				"train_status": status["status"],
-				"train_status_time": data["time"],
+				"rr_status": status["status"],
+				"rr_status_time": data_rr["time"],
 
-				"message": status["message"],
-				"late": status["late"],
-				"status_class": status["css_class"],
+				"rr_message": status["message"],
+				"rr_late": status["late"],
+				"rr_status_class": status["css_class"],
 
 				"is_sfw": is_sfw,
 				"production": production,

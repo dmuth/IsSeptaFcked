@@ -6,18 +6,18 @@ div#main
 	div.status
 		span Regional Rail is 
 	div.status
-		span(class = "#{status_class}") #{train_status}
+		span(class = "#{rr_status_class}") #{rr_status}
 
 	ul#trains
-		if (late)
-			each train in late
+		if (rr_late)
+			each train in rr_late
 				li #{train}
 
-	if (message)
-		div#message #{message}
+	if (rr_message)
+		div#message #{rr_message}
 	p
 	div#status-time.
-		Train data last updated: #{train_status_time}
+		Train data last updated: #{rr_status_time}
 
 //-
 //- Social widgets.
