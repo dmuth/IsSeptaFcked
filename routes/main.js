@@ -11,6 +11,7 @@ var util = require("util");
 var septa_rr = require("../lib/septa/rr/main.js");
 var septa_bus = require("../lib/septa/bus/main.js");
 var text_rr = require("../lib/septa/rr/text.js");
+var text_bus = require("../lib/septa/bus/text.js");
 
 
 var production = false;
@@ -64,10 +65,7 @@ function go(request, response) {
 		}
 
 		var data_rr = data["rr"];
-
 		var rr_status = data_rr["status"];
-
-		var message = "";
 
 		var rr_age = Math.round(time_t) - data_rr["time_t"];
 		var rr_max_age = 60 * 10;
