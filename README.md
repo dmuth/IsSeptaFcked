@@ -7,13 +7,7 @@ are a regular commuter on SEPTA: www.isSeptaFucked.com.
 Why the profanity?
 ==================
 
-I explain that in the FAQ: http://www.isseptafucked.com/faq
-
-Why did you write it?
-=====================
-
-This, and many more questions are answered in the FAQ: http://www.isseptafucked.com/faq
-
+This, and many more questions are answered in the FAQ:: http://www.isseptafucked.com/faq
 
 How does it work?
 =================
