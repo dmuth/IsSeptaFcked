@@ -1,10 +1,13 @@
-
 What is this?
 =============
 
 This is the code repository for the site www.isSeptaFcked.com.  Or, if you 
 are a regular commuter on SEPTA: www.isSeptaFucked.com.
 
+Why the profanity?
+==================
+
+I explain thatin the FAQ: http://www.isseptafucked.com/faq
 
 Why did you write it?
 =====================
