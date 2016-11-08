@@ -4,18 +4,106 @@
 !!!
 html
 	head
-		title= title
-		link(rel='stylesheet', href='/css/style.css')
-
+		meta(name="viewport", content="width=device-width, initial-scale=1")
 		meta(name="description", content="Status dashboard for SEPTA Regional Rail trains")
 
-		//-
-		//- If we have a refresh value, set it.
-		//-
-		if ( typeof(refresh) != "undefined")
-			meta(http-equiv="refresh", content="#{refresh}")
+		title= title
 
-	body!= body
+		// Bootstrap Core CSS 
+		link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", rel="stylesheet", integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==", crossorigin="anonymous")
+		script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
+		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js", integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==", crossorigin="anonymous")
+
+		//
+		// Font Awesome!
+		//
+		script(src="https://use.fontawesome.com/2325ebd002.js")
+
+		//
+		// Override with our CSS
+		//
+		link(rel='stylesheet', href='/css/style.css')
+
+		// HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+		// WARNING: Respond.js doesn't work if you view the page via file://
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+		// TODO: Open Graph and Twitter cards
+
+
+	body
+
+		// Based on http://webdesign.tutsplus.com/tutorials/baking-bootstrap-snippets-with-jade--cms-22798
+		<!-- Navigation -->
+		nav(class="navbar navbar-inverse navbar-fixed-top", role="navigation")
+
+			.container
+
+				<!-- Brand and toggle get grouped for better mobile display -->
+				.navbar-header
+
+					button(type="button", class="navbar-toggle", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1")
+						.span(class="sr-only") Toggle navigation
+						.span(class="icon-bar")
+						.span(class="icon-bar")
+						.span(class="icon-bar")
+
+					a(class="navbar-brand", href="/") Is SEPTA Fucked?
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				div(class="collapse navbar-collapse", id="bs-example-navbar-collapse-1", style="max-height: none; ")
+
+					ul(class="nav navbar-nav")
+						li
+							a(href="/faq") 
+								span(class="glyphicon ")
+								| &nbsp; FAQ
+
+					ul(class="nav navbar-nav")
+						li
+							a(href="/api") 
+								span(class="glyphicon ")
+								| &nbsp; API
+
+					if ( typeof(is_sfw) != "undefined")
+						//- var is_sfw = true; // Debugging
+						if (is_sfw)
+							ul(class="nav navbar-nav")
+								li
+									a(href="http://www.IsSeptaFucked.com/") 
+										span(class="glyphicon ")
+										| &nbsp; NSFW Version
+						else
+							ul(class="nav navbar-nav")
+								li
+									a(href="http://www.IsSeptaFcked.com/") 
+										span(class="glyphicon ")
+										| &nbsp; SFW Version
+
+					ul(class="nav navbar-nav")
+						li
+							a(href="https://github.com/dmuth/IsSeptaFcked/issues", target="_blank") 
+								span(class="glyphicon glyphicon-share-alt")
+								| &nbsp; Report A Bug
+
+					ul(class="nav navbar-nav")
+						li
+							a(href="https://github.com/dmuth/IsSeptaFcked", target="_blank") 
+								span(class="fa fa-github fa-lg", aria-hidden="true") 
+								| &nbsp; Source Code
+
+					ul(class="nav navbar-nav")
+						li
+							a(href="https://www.facebook.com/IsSeptaFcked", target="_blank") 
+								span(class="glyphicon glyphicon-share-alt")
+								| &nbsp; Visit us on Facebook
+
+		.container(style="padding-top: 60px; padding-bottom: 50px;") 
+			!= body
+
 
 //-
 //- If we're running in production, display our Google Apps code

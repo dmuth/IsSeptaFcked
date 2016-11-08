@@ -1,56 +1,75 @@
 
-div#main
 
-	h1.title #{title}
+div(class="row")
+	div(class="col-md-6 col-xs-12")
 
-	//-
-	//- Regional Rail Status
-	//-
-	div.status
-		span Regional Rail is 
-	div.status
-		span(class = "#{rr_status_class}") #{rr_status}
+		//-
+		//- Regional Rail Status
+		//-
+		h2 Regional Rail Is:
 
-	ul#trains
+		if ( rr_status_class == "status-not-fcked")
+			div(class="status #{rr_status_class}") #{rr_status}
+
+		else if ( rr_status_class == "status-a-little-fcked")
+			div(class="status #{rr_status_class}") #{rr_status}
+
+		else if ( rr_status_class == "status-fcked")
+			div(class="status #{rr_status_class}") #{rr_status}
+
+		else
+			//
+			// Unknown
+			//
+			div(class="status #{rr_status_class}") #{rr_status}
+
+
 		if (rr_late)
 			each train in rr_late
-				li #{train}
+				div(style="font-size: smaller; ") #{train}
+			p
 
-	if (rr_message)
-		div#message #{rr_message}
-	p
-	div#status-time.
-		Train data last updated: #{rr_status_time}
+		if (rr_message)
+			div#message #{rr_message}
+		p
 
-	br
-	br
-	br
+		div#status-time.
+			Train data last updated: #{rr_status_time}
 
-	//-
-	//- Bus status
-	//-
-	div.status
-		span Buses are
-	div.status
-		span(class = "#{bus_status_class}") #{bus_status}
 
-	ul#buses
+	div(class="col-md-6 col-xs-12")
+		//-
+		//- Bus status
+		//-
+		h2 Buses Are:
+
+		if ( bus_status_class == "status-not-fcked")
+			div(class="status #{bus_status_class}") #{bus_status}
+
+		else if ( bus_status_class == "status-a-little-fcked")
+			div(class="status #{bus_status_class}") #{bus_status}
+
+		else if ( bus_status_class == "status-fcked")
+			div(class="status #{bus_status_class}") #{bus_status}
+
+		else
+			//
+			// Unknown
+			//
+			div(class="status #{bus_status_class}") #{bus_status}
+
 		if (bus_suspended)
 			each bus in bus_suspended
-				li #{bus}
+				div(style="font-size: smaller; ") #{bus}
+			p
 
-	if (bus_message)
-		div#message #{bus_message}
-	p
-	div#status-time.
-		Bus data last updated: #{bus_status_time}
+		if (bus_message)
+			div#message #{bus_message}
+		p
+
+		div#status-time.
+			Bus data last updated: #{bus_status_time}
 
 
 include lib/footer
-
-//-
-//- Our GitHub ribbon in the upper right.
-//-
-a(href="https://github.com/dmuth/IsSeptaFcked") <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
-
 
