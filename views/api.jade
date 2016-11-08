@@ -4,14 +4,15 @@ div#faq
 
 	h2.title API
 
-	h4.faq-question Why did you write an API?
+	h3.faq-question Why did you write an API?
 	div.faq-answer
 		| I wanted to share the data I generate (determining the 
 		| "fuckedness" of trains) with others.  I found a neat way 
 		| to use SEPTA's data, and maybe someone else will find a 
 		| neat way to use my data.
+	p &nbsp;
 
-	h4.faq-question So what are the API endpoints?
+	h3.faq-question So what are the API endpoints?
 	div.faq-answer
 		ul
 			li(style="padding-bottom: 10px;")
@@ -30,12 +31,12 @@ div#faq
 				a(href="/api/bus/raw_data") /api/bus/raw_data
 				|  Bus Raw Data
 				|  (A copy of the data I'm getting from SEPTA)
+	p &nbsp;
 
-	h4.faq-question Are there any restrictions on this data?
+	h3.faq-question Are there any restrictions on this API?
 	div.faq-answer
 		| Please try not to hit the API more than once every few minutes.
 
-	p &nbsp;
 	p &nbsp;
 
 include lib/footer
