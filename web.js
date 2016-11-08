@@ -15,6 +15,7 @@ logger.go(express.logger);
 
 var app = express.createServer(express.logger());
 
+
 //
 // Are we running in production
 //
@@ -68,6 +69,10 @@ app.use(express.static(__dirname + '/public'));
 //
 app.set("views", __dirname + "/views");
 
+//
+// Don't minify the HTML.
+//
+app.set('view options', {pretty: true}); 
 
 //
 // Start up the SEPTA sub-system, specifically fetching from the API.
