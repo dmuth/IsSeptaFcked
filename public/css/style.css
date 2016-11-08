@@ -8,26 +8,15 @@ body {
 	font-family: arial;
 }
 
-body a:visited {
-	color: red;
-}
-
-body a:link {
-	color: green;
-}
-
-#main {
-	text-align: center;
-}
 
 h1 {
 	text-transform: uppercase; 
-	font-size: 36px;
+	font-size: 32px;
 }
 
 .status {
 	text-transform: uppercase; 
-	font-size: 64px; 
+	font-size: 32px; 
 }
 
 .status-fcked {
@@ -46,56 +35,7 @@ h1 {
 	color: gray;
 }
 
-ul#trains {
-	list-style-position:inside;
-	font-size: smaller;
-}
-
-ul#buses {
-	list-style-position:inside;
-	font-size: smaller;
-}
-
-#message {
-	width: 600px;
-	/* Center this block */
-	margin-left: auto; 	margin-right: auto;
-}
-
-#faq {
-	width: 600px;
-	margin-left: auto; 	margin-right: auto;
-}
-
-.faq-answer {
-	padding-left: 20px;
-}
-
-/**
-* Pin this element to the lower left of the browser window.
-*/
-.lower-left {
-	position: fixed; 
-	left: 0; bottom: 0; 
-	padding-bottom: 20px; 
-	padding-left: 20px;
-	padding-top: 20px;
-	padding-right: 20px;
-}
-
-/**
-* Pin this element to the lower left of the browser window.
-*/
-.upper-left {
-	position: fixed; 
-	left: 0; top: 0; 
-	padding-bottom: 20px; 
-	padding-left: 20px;
-	padding-top: 20px;
-	padding-right: 20px;
-}
-
-
 #status-time {
 	font-size: smaller;
 }
+
