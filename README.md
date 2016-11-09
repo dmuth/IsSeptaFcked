@@ -4,6 +4,9 @@ What is this?
 This is the code repository for the site www.isSeptaFcked.com.  Or, if you 
 are a regular commuter on SEPTA: www.isSeptaFucked.com.
 
+Screenshot:
+<img src="https://raw.githubusercontent.com/dmuth/IsSeptaFcked/master/img/septa.png" />
+
 Why the profanity?
 ==================
 
