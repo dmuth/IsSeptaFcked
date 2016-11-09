@@ -31,7 +31,23 @@ html
 		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
-		// TODO: Open Graph and Twitter cards
+		//
+		// No URL is provided here, as this can be installed on different servers
+		// This code borrowed from http://dustinfarris.com/2012/07/05/facebook-meta-tags-using-django-and-jade.html
+		//
+		meta(property='og:title', content='Is SEPTA Fucked?')
+		meta(property='og:description', content='Status Dashboard for SEPTA Regional Rail trains and busses')
+		meta(property='og:image', content='https://raw.githubusercontent.com/dmuth/IsSeptaFcked/master/img/septa.png')
+
+
+		//
+		// Borrowed from https://gist.github.com/craigmdennis/28e4433d5fcaadd7ec32
+		//
+		meta(name="twitter:card", content="summary")
+		meta(name="twitter:site", content="@dmuth")
+		meta(name="twitter:title", content="Is SEPTA Fucked?")
+		meta(name="twitter:description", content="Status Dashboard for SEPTA Regional Rail trains and busses")
+		meta(name="twitter:img", content="https://raw.githubusercontent.com/dmuth/IsSeptaFcked/master/img/septa.png")
 
 
 	body
