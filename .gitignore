@@ -4,3 +4,8 @@
 #
 *.swp
 
+#
+# Oh OS/X, you so crazy!
+#
+.DS_Store
+
