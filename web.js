@@ -49,6 +49,23 @@ routes["echo"] = require("./routes/echo.js");
 routes["faq"] = require("./routes/faq.js")(production);
 
 
+//
+// If hitting the API, include CORS headers.
+//
+app.use(function(req, res, next) {
+
+	var url = req.originalUrl;
+	if (url.match(/^\/api/)) {
+		res.header("Access-Control-Allow-Origin", "*");
+		res.header("Access-Control-Allow-Methods", "GET");
+		res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	}
+
+	next();
+
+});
+
+
 app.get("/", routes["main"].go);
 app.get("/api", routes["api"].go);
 app.get("/api/rr", routes["api/rr"].go);
