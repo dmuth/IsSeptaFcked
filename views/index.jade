@@ -1,7 +1,8 @@
 
 
-div(class="row")
-	div(class="col-md-6 col-xs-12")
+div(class="row row-status")
+
+	div(class="col-md-12 col-xs-12")
 
 		//-
 		//- Regional Rail Status
@@ -37,7 +38,13 @@ div(class="row")
 			Train data last updated: #{rr_status_time}
 
 
-	div(class="col-md-6 col-xs-12")
+// Add some spacing
+div(class="row")
+	div(class="col-md-12 col-xs-12 status-row")
+		br
+
+div(class="row row-status")
+	div(class="col-md-12 col-xs-12 ")
 		//-
 		//- Bus status
 		//-
@@ -69,6 +76,29 @@ div(class="row")
 
 		div#status-time.
 			Bus data last updated: #{bus_status_time}
+
+
+// Add some spacing
+div(class="row")
+	div(class="col-md-12 col-xs-12 status-row")
+		br
+
+
+div(class="row row-not-status")
+	div(class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-12")
+		h3 Media Coverage
+		ul
+			li(style="font-size: smaller; ")
+				a(href="http://www.phillymag.com/news/2012/09/26/web-app-tells-septa-f%ED/") New Web App Tells You When SEPTA Is F#$%ed
+			li(style="font-size: smaller; ")
+				a(href="http://technical.ly/philly/2016/07/06/is-septa-fucked-douglas-muth/") Now more timely than ever: Is SEPTA F*cked?
+
+div(class="row")
+	div(class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-12")
+		h3 Awards
+		ul
+			li(style="font-size: smaller; ")
+				a(href="http://technical.ly/philly/2017/02/08/network-awards-winners/") Best Side Project, Net/Work Philly
 
 
 include lib/footer

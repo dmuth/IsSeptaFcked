@@ -14,9 +14,17 @@ h1 {
 	font-size: 32px;
 }
 
+h2 {
+	font-size: 6vh;
+}
+
 .status {
 	text-transform: uppercase; 
-	font-size: 32px; 
+	font-size: 5vh;
+}
+
+.row-status {
+	text-align: center;
 }
 
 .status-fcked {
@@ -38,4 +46,5 @@ h1 {
 #status-time {
 	font-size: smaller;
 }
+
 
