@@ -1,5 +1,5 @@
-What is this?
-=============
+
+# What is this?
 
 This is the code repository for the site www.isSeptaFcked.com.  Or, if you 
 are a regular commuter on SEPTA: www.isSeptaFucked.com.
@@ -7,13 +7,13 @@ are a regular commuter on SEPTA: www.isSeptaFucked.com.
 Screenshot:
 <img src="https://raw.githubusercontent.com/dmuth/IsSeptaFcked/master/img/septa.png" />
 
-Why the profanity?
-==================
+
+# Why the profanity?
 
 This, and many more questions are answered in the FAQ:: http://www.isseptafucked.com/faq
 
-How does it work?
-=================
+
+# How does it work?
 
 Once every minute, it makes an API request for SEPTA's Regional Rail trains.  
 	It then esitmates "fuckedness" as follows:
@@ -27,8 +27,20 @@ If you have any questions, feel free to reach out to me. I can be reached
 here on GitHub or through the many social networks I am on: http://www.dmuth.org/contact
 
 
-Architecture Overview
-=====================
+# Media Coverage
+
+- <a href="http://www.phillymag.com/news/2012/09/26/web-app-tells-septa-f%ED/">New Web App Tells You When SEPTA Is F#$%ed</a>
+- <a href="http://technical.ly/philly/2016/07/06/is-septa-fucked-douglas-muth/">Now more timely than ever: Is SEPTA F*cked?</a>
+
+
+# Awards
+
+Never thought I would win an award for profanity, but it happened.  IsSeptaFucked <a href="http://technical.ly/philly/2017/02/08/network-awards-winners/">won the "Best Side Prject" award</a> in the NET/WORK Philly 2017 awards.  
+
+
+
+
+# Architecture Overview
 
 For fellow nerds out there, here's a brief rundown on how the various 
 	node.js modules are laid out:
@@ -57,6 +69,11 @@ For fellow nerds out there, here's a brief rundown on how the various
 - lib/sfw.js - Makes the determination if we are running under the SFW 
 	domain, and does filtering of strings.
 - routes/ - Each file in here corresponds to the same named URI, and handles requests to that URI.
+
+
+# TODO
+
+- Express 4
 
 
 
