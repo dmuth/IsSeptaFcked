@@ -48,3 +48,60 @@ h2 {
 }
 
 
+/**
+* I discovered a problem where, when viewing on an iPad, 
+* the main menu is shown, but it wraps, and covers the first line of text.
+* So I am implementing the workaround as per http://stackoverflow.com/a/23655741/196073
+* which will display the hamburger menu for widths smaller than 1200px.
+*
+* I wish there was an easier way to do this or recompiling the Bootstrap CSS...
+*/
+@media (max-width: 1199px) {
+
+	.navbar-header {
+		float: none;
+	}
+
+	.navbar-left,.navbar-right {
+		float: none !important;
+	}
+
+	.navbar-toggle {
+		display: block;
+	}
+
+	.navbar-collapse {
+		border-top: 1px solid transparent;
+		box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+	}
+
+	.navbar-fixed-top {
+		top: 0;
+		border-width: 0 0 1px;
+	}
+
+	.navbar-collapse.collapse {
+		display: none!important;
+	}
+
+	.navbar-nav {
+		float: none!important;
+		margin-top: 7.5px;
+	}
+
+	.navbar-nav>li {
+		float: none;
+	}
+
+	.navbar-nav>li>a {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+
+	.collapse.in{
+		display:block !important;
+	}
+
+}
+
+
