@@ -18,6 +18,19 @@ h2 {
 	font-size: 6vh;
 }
 
+a:link {
+	color: yellow;
+}
+
+a:visited {
+	color: #337ab7;
+	color: #448bc8;
+}
+
+a:hover {
+	color: white;
+}
+
 .status {
 	text-transform: uppercase; 
 	font-size: 5vh;
