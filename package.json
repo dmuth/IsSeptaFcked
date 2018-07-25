@@ -7,8 +7,8 @@
     "express": "2.5.x"
   },
   "engines": {
-    "node": "0.8.x",
-    "npm": "1.1.x"
+    "node": "10.0.0",
+    "npm": "6.0.0"
   },
   "scripts": {
      "start": "node ./web.js"
