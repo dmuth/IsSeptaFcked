@@ -38,8 +38,6 @@ here on GitHub or through the many social networks I am on: http://www.dmuth.org
 Never thought I would win an award for profanity, but it happened.  IsSeptaFucked <a href="http://technical.ly/philly/2017/02/08/network-awards-winners/">won the "Best Side Prject" award</a> in the NET/WORK Philly 2017 awards.  
 
 
-
-
 # Architecture Overview
 
 For fellow nerds out there, here's a brief rundown on how the various 
@@ -69,6 +67,11 @@ For fellow nerds out there, here's a brief rundown on how the various
 - lib/sfw.js - Makes the determination if we are running under the SFW 
 	domain, and does filtering of strings.
 - routes/ - Each file in here corresponds to the same named URI, and handles requests to that URI.
+
+
+# Development
+
+Run `npm start` to spin up the webserver on port 5000.
 
 
 # TODO
