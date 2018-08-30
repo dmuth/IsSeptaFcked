@@ -71,6 +71,13 @@ For fellow nerds out there, here's a brief rundown on how the various
 
 # Development
 
+## In Docker
+
+docker build -t septa . && docker run -e TZ=EST5EDT -p 5000:5000 -it -v $(pwd):/mnt septa
+
+
+## The Manual Way
+
 Run `npm start` to spin up the webserver on port 5000.
 
 
