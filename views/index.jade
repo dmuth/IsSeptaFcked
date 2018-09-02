@@ -18,6 +18,9 @@ div(class="row row-status")
 		else if ( rr_status_class == "status-fcked")
 			div(class="status #{rr_status_class}") #{rr_status}
 
+		else if ( rr_status_class == "status-turbo-fcked")
+			div(class="status #{rr_status_class}") #{rr_status}
+
 		else
 			//
 			// Unknown
@@ -31,7 +34,7 @@ div(class="row row-status")
 			p
 
 		if (rr_message)
-			div#message #{rr_message}
+			div#message !{rr_message}
 		p
 
 		div#status-time.
