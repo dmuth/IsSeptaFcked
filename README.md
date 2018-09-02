@@ -73,10 +73,15 @@ For fellow nerds out there, here's a brief rundown on how the various
 
 ## In Docker
 
-docker build -t septa . && docker run -e TZ=EST5EDT -p 5000:5000 -it -v $(pwd):/mnt septa
+`docker build -t septa . && docker run -e TZ=EST5EDT -p 5000:5000 -it -v $(pwd):/mnt septa`
 
 
-## The Manual Way
+## In Docker Compose
+
+`docker-compose build && docker-compose up`
+
+
+## The Manual Way (<a href="https://knowyourmeme.com/memes/y-tho">Y Tho</a>)
 
 Run `npm start` to spin up the webserver on port 5000.
 

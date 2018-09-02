@@ -1,0 +1,17 @@
+
+version: "3"
+
+services:
+
+  septa:
+    build:
+      context: .
+      dockerfile: "Dockerfile"
+    volumes:
+      - .:/mnt
+    ports:
+      - 5000:5000
+    environment:
+      - TZ=EST5EDT
+
+
