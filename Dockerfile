@@ -3,7 +3,7 @@ FROM alpine
 
 COPY entrypoint.sh /
 
-RUN apk --no-cache add nodejs
+RUN apk --no-cache add nodejs npm
 
 WORKDIR /mnt
 
