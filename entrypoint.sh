@@ -14,6 +14,11 @@ fi
 cd /mnt
 
 echo "# "
+echo "# Installing modules"
+echo "# "
+npm install
+
+echo "# "
 echo "# Running 'npm start'"
 echo "# "
 npm start
