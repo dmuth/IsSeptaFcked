@@ -1,8 +1,8 @@
 
 # What is this?
 
-This is the code repository for the site www.isSeptaFcked.com.  Or, if you 
-are a regular commuter on SEPTA: www.isSeptaFucked.com.
+This is the code repository for the site <a href="http://www.isSeptaFcked.com/">www.isSeptaFcked.com</a>.  Or, if you 
+are a regular commuter on SEPTA: <a href="https://www.isSeptaFucked.com/">www.isSeptaFucked.com</a>.
 
 Screenshot:
 <img src="https://raw.githubusercontent.com/dmuth/IsSeptaFcked/master/img/septa.png" />
@@ -10,7 +10,7 @@ Screenshot:
 
 # Why the profanity?
 
-This, and many more questions are answered in the FAQ:: http://www.isseptafucked.com/faq
+This, and many more questions are answered in the FAQ: http://www.isseptafucked.com/faq
 
 
 # How does it work?
