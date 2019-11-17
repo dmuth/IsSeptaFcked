@@ -1,5 +1,5 @@
 /**
-* This module handles rendering of our front page.
+* This module handles rendering of our API page.
 *
 * @author Douglas Muth <http://www.dmuth.org/>
 *
