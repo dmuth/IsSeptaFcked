@@ -26,9 +26,9 @@ exports.go = function(request, response) {
 		retval += JSON.stringify(data, null, 4);
 
 		//
-		// Make this readable in the web browser.
+		// As per RFC 4627, this should application/json so that apps can consume it.
 		//
-		response.header("Content-Type", "text/json");
+		response.header("Content-Type", "application/json");
 
 		response.send(retval);
 
