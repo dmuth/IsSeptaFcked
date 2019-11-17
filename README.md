@@ -89,6 +89,20 @@ For fellow nerds out there, here's a brief rundown on how the various
 - http://localhost:5000/
 
 
+# Deployment in Heroku
+
+- `brew tap heroku/brew && brew install heroku`
+   - Install the Heroku CLI
+- `heroku login`
+   - Log in to Heroku
+- `heroku git:remote -a isseptafcked`
+   - Add the remote for Heroku's Git repo as `heroku`
+- `git remote -v`
+   - Verify that a remote called `heroku` exists
+- `git push heroku`
+   - Push the changes out to Heroku
+
+
 # TODO
 
 - Express 4
