@@ -31,11 +31,13 @@ here on GitHub or through the many social networks I am on: http://www.dmuth.org
 
 - <a href="http://www.phillymag.com/news/2012/09/26/web-app-tells-septa-f%ED/">New Web App Tells You When SEPTA Is F#$%ed</a>
 - <a href="http://technical.ly/philly/2016/07/06/is-septa-fucked-douglas-muth/">Now more timely than ever: Is SEPTA F*cked?</a>
+- <a href="https://technical.ly/philly/2018/11/16/septa-regional-rail-turbo-fcked/">That snow storm sent SEPTA trains to new ‘Turbo F*cked’ status</a>
+- <a href="https://technical.ly/philly/2019/09/29/evolution-doug-muth-irreverent-is-septa-fucked-delay-tracker/">The evolution of Doug Muth’s irreverent SEPTA delay tracker</a>
 
 
 # Awards
 
-Never thought I would win an award for profanity, but it happened.  IsSeptaFucked <a href="http://technical.ly/philly/2017/02/08/network-awards-winners/">won the "Best Side Prject" award</a> in the NET/WORK Philly 2017 awards.  
+Never thought I would win an award for profanity, Yet here we are.  IsSeptaFucked <a href="http://technical.ly/philly/2017/02/08/network-awards-winners/">won the "Best Side Prject" award</a> in the NET/WORK Philly 2017 awards.  
 
 
 # Architecture Overview
