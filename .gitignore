@@ -3,4 +3,7 @@ node_modules
 # Steve Jobs
 .DS_Store
 
+# Vim
+*~
+*.swp
 
