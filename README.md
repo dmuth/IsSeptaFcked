@@ -45,30 +45,30 @@ Never thought I would win an award for profanity, Yet here we are.  IsSeptaFucke
 For fellow nerds out there, here's a brief rundown on how the various 
 	node.js modules are laid out:
 
-- views/ - Jade templates for public facing pages.
-- public/ - CSS and the site's robots.txt
-- node_modules/ - Modules installed with npm.  One school of thought says 
+- `views/` - Jade templates for public facing pages.
+- `public/` - CSS and the site's robots.txt
+- `node_modules/` - Modules installed with npm.  One school of thought says 
 	I should just rely on the site's install.js file.  But I always felt 
 	that a "git clone" operation should provide a complete working copy 
 	of the software.  I may revise this decision when that directory 
 	gets sufficently large. ;-)
-- lib/logger.js - Handles custom logging in Express.  Heroku uses proxies, 
+- `lib/logger.js` - Handles custom logging in Express.  Heroku uses proxies, 
 	and I would like to log the IP that incoming requests are forwarded for.
-	- lib/septa/rr/api.js - Module that actually connects to SEPTA's Regional Rail API, and translates 
+	- `lib/septa/rr/api.js` - Module that actually connects to SEPTA's Regional Rail API, and translates 
 	their data into something we can actually use.
-	- lib/septa/rr/main.js - The main function in here is called at Express boot time,
+	- `lib/septa/rr/main.js` - The main function in here is called at Express boot time,
 	and it is responsible for calling SEPTA's API once a minute.
 	It is also responsible for determing the level of "fuckedness" of Regional Rail. 
-	- lib/septa/rr/text.js - Create messages based on the lateness data.
-	- lib/septa/bus/api.js - Module that actually connects to SEPTA's bus API, and translates 
+	- `lib/septa/rr/text.js` - Create messages based on the lateness data.
+	- `lib/septa/bus/api.js` - Module that actually connects to SEPTA's bus API, and translates 
 	their data into something we can actually use.
-	- lib/septa/bus/main.js - The main function in here is called at Express boot time,
+	- `lib/septa/bus/main.js` - The main function in here is called at Express boot time,
 	and it is responsible for calling SEPTA's bus API once every 5 minutes.
 	It is also responsible for determing the level of "fuckedness" of Regional Rail. 
-	- lib/septa/bus/text.js - Create messages based on the lateness data.
-- lib/sfw.js - Makes the determination if we are running under the SFW 
+	- `lib/septa/bus/text.js` - Create messages based on the lateness data.
+- `lib/sfw.js` - Makes the determination if we are running under the SFW 
 	domain, and does filtering of strings.
-- routes/ - Each file in here corresponds to the same named URI, and handles requests to that URI.
+- `routes/` - Each file in here corresponds to the same named URI, and handles requests to that URI.
 
 
 # Development
