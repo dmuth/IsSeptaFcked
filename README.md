@@ -98,12 +98,12 @@ website is relatively limited, at the current time it's quicker to uncomment sec
 of the code that have the string `// Debug` in order to change behavior of the site for
 texting purposes.  Debug code can be found in these files:
 
-- `lib/septa//rr/main.js`
-- `lib/septa//rr/api.js`
-- `lib/septa//rr/text.js`
-- `lib/septa//bus/main.js`
-- `lib/septa//bus/api.js`
-- `lib/septa//bus/text.js`
+- `lib/septa/rr/main.js`
+- `lib/septa/rr/api.js`
+- `lib/septa/rr/text.js`
+- `lib/septa/bus/main.js`
+- `lib/septa/bus/api.js`
+- `lib/septa/bus/text.js`
 
 
 # Deployment in Heroku
