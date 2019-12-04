@@ -41,6 +41,7 @@ app.configure("production", function() {
 var routes = {};
 routes["main"] = require("./routes/main.js")(production);
 routes["api"] = require("./routes/api.js")(production);
+routes["api/status"] = require("./routes/api-status.js");
 routes["api/rr"] = require("./routes/api-rr.js");
 routes["api/rr/status"] = require("./routes/api-rr-status.js");
 routes["api/rr/raw_data"] = require("./routes/api-rr-raw.js");
@@ -70,6 +71,7 @@ app.use(function(req, res, next) {
 
 app.get("/", routes["main"].go);
 app.get("/api", routes["api"].go);
+app.get("/api/status", routes["api/status"].go);
 app.get("/api/rr", routes["api/rr"].go);
 app.get("/api/rr/status", routes["api/rr/status"].go);
 app.get("/api/rr/raw_data", routes["api/rr/raw_data"].go);
