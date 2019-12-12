@@ -48,6 +48,14 @@ exports.go = function(request, response) {
 				data["status"]["rr"]["summary"],
 				data["status"]["bus"]["summary"]
 				);
+			data["summary_bus"] = util.format("Busses are %s! %s",
+				data["status"]["bus"]["status"],
+				data["status"]["bus"]["summary"]
+				);
+			data["summary_rr"] = util.format("Regional Rail is %s! %s",
+				data["status"]["rr"]["status"],
+				data["status"]["rr"]["summary"]
+				);
 
 			retval += JSON.stringify(data, null, 4);
 
