@@ -42,13 +42,13 @@ exports.go = function(request, response) {
 			data["status"] = {};
 			data["status"]["rr"] = rr_data["status"];
 			data["status"]["bus"] = bus_data["status"];
-			data["summary"] = util.format("Regional rail is %s! Busses are %s! %s %s",
+			data["summary"] = util.format("Regional rail is %s! Buses are %s! %s %s",
 				data["status"]["rr"]["status"],
 				data["status"]["bus"]["status"],
 				data["status"]["rr"]["summary"],
 				data["status"]["bus"]["summary"]
 				);
-			data["summary_bus"] = util.format("Busses are %s! %s",
+			data["summary_bus"] = util.format("Buses are %s! %s",
 				data["status"]["bus"]["status"],
 				data["status"]["bus"]["summary"]
 				);
