@@ -1,7 +1,6 @@
 
 var express = require('express');
 var logger = require("./lib/logger.js");
-var seq = require("seq");
 var septa_rr = require("./lib/septa/rr/main.js");
 var septa_bus = require("./lib/septa/bus/main.js");
 
