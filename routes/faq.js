@@ -5,7 +5,6 @@
 *
 */
 
-var seq = require("seq");
 var sfw = require("../lib/sfw.js");
 var util = require("util");
 var septa = require("../lib/septa/rr/main.js");

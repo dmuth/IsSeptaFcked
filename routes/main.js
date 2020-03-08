@@ -5,7 +5,6 @@
 *
 */
 
-var seq = require("seq");
 var sfw = require("../lib/sfw.js");
 var util = require("util");
 var septa_rr = require("../lib/septa/rr/main.js");
@@ -44,14 +43,14 @@ function go(request, response) {
 	var data = {};
 
 	var time_t = new Date().getTime() / 1000;
-	seq().seq(function() {
-		septa_rr.getData(this);
 
-	}).seq(function(in_data) {
+	septa_rr.getData(this).then( (in_data) => {
 		data["rr"] = in_data;
-		septa_bus.getData(this);
 
-	}).seq(function(in_data) {
+		return(septa_bus.getData(this));
+
+	}).then( (in_data) => {
+
 		data["bus"] = in_data;
 
 		//
@@ -105,9 +104,8 @@ function go(request, response) {
 				"refresh": 300,
 				"uri": request["url"],
 
-			}, this);
+			}, function(err, html) {
 
-	}).seq(function(html) {
 		//
 		// Send our response
 		//
@@ -122,10 +120,13 @@ function go(request, response) {
 		//
 		var time_t_after = new Date().getTime() / 1000;
 		var diff = Math.round((time_t_after - time_t) * 1000) / 1000;
-		var message = util.format("Page rendered in %d seconds", diff);
+		var message = util.format("web.js: /: Page rendered in %d seconds", diff);
 		console.log(message);
 
+		});
+
 	}).catch(function(error) {
+		//console.log(arguments); // More Debugging output
 		console.log("ERROR: web.js: /: " + error);
 
 	});
