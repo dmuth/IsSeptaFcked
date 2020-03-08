@@ -17,7 +17,7 @@ exports.go = function(request, response) {
 
 	var retval = "";
 
-	septa.getData(function(error, data) {
+	septa.getData().then( (data) => {
 
 		delete data["data"];
 		delete data["suspended"];
@@ -34,6 +34,9 @@ exports.go = function(request, response) {
 		response.header("Content-Type", "application/json");
 
 		response.send(retval);
+
+	}).catch(function(error) {
+		console.log("ERROR: api-bus-status.js: go(): " + error);
 
 	});
 

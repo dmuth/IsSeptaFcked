@@ -17,7 +17,7 @@ exports.go = function(request, response) {
 
 	var retval = "";
 
-	septa.getRawData(function(error, in_data) {
+	septa.getRawData().then( (in_data) => {
 
 		var data = {};
 		data["data"] = in_data;
@@ -31,6 +31,9 @@ exports.go = function(request, response) {
 		response.header("Content-Type", "application/json");
 
 		response.send(retval);
+
+	}).catch(function(error) {
+		console.log("ERROR: api-rr-raw.js: go(): " + error);
 
 	});
 

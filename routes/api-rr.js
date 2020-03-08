@@ -17,7 +17,7 @@ exports.go = function(request, response) {
 
 	var retval = "";
 
-	septa.getData(function(error, data) {
+	septa.getData().then( (data) => {
 
 		data["_comment"] = "Regional Rail data processed by us";
 
@@ -29,6 +29,9 @@ exports.go = function(request, response) {
 		response.header("Content-Type", "application/json");
 
 		response.send(retval);
+
+	}).catch(function(error) {
+		console.log("ERROR: api-status-rr.js: go(): " + error);
 
 	});
 
