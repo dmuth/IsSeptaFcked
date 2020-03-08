@@ -35,23 +35,11 @@ module.exports = function(in_production) {
 
 
 /**
-* Our main entry point.
+* Bring together all of the data that we're going to send to our response
 */
-function go(request, response) {
+function responseRender(is_sfw, time_t, data, request, response) {
 
-	var is_sfw = sfw.is_sfw(request);
-	var data = {};
-
-	var time_t = new Date().getTime() / 1000;
-
-	septa_rr.getData(this).then( (in_data) => {
-		data["rr"] = in_data;
-
-		return(septa_bus.getData(this));
-
-	}).then( (in_data) => {
-
-		data["bus"] = in_data;
+	return(new Promise( (resolve, reject) => {
 
 		//
 		// If in SFW mode, turn our array into a string, 
@@ -105,6 +93,23 @@ function go(request, response) {
 				"uri": request["url"],
 
 			}, function(err, html) {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(html);
+				}
+			});
+
+	}));
+
+} // End of responseRender()
+
+
+/**
+* Do some final filtering and then send out our response!
+*/
+function responseSend(is_sfw, html, response) {
+	return(new Promise( (resolve, reject) => {
 
 		//
 		// Send our response
@@ -114,6 +119,45 @@ function go(request, response) {
 		}
 		response.send(html);
 
+		resolve();
+
+	}));
+} // End of responseSend()
+
+
+/**
+* Our main entry point.
+*/
+function go(request, response) {
+
+	var is_sfw = sfw.is_sfw(request);
+	var data = {};
+
+	var time_t = new Date().getTime() / 1000;
+
+	septa_rr.getData(this).then( (in_data) => {
+		//
+		// We now have Regional Rail data.
+		//
+		data["rr"] = in_data;
+
+		return(septa_bus.getData(this));
+
+	}).then( (in_data) => {
+		//
+		// We now have bus data.
+		//
+		data["bus"] = in_data;
+
+		return(responseRender(is_sfw, time_t, data, request, response));
+
+	}).then( (html) => {
+		//
+		// We've got HTML, we just need to send it out!
+		//
+		return(responseSend(is_sfw, html, response));
+	
+	}).then( () => {
 		//
 		// Now calculate how long it took to load and render 
 		// our text, and print that out.
@@ -123,10 +167,8 @@ function go(request, response) {
 		var message = util.format("web.js: /: Page rendered in %d seconds", diff);
 		console.log(message);
 
-		});
-
 	}).catch(function(error) {
-		//console.log(arguments); // More Debugging output
+		console.log(arguments); // More Debugging output
 		console.log("ERROR: web.js: /: " + error);
 
 	});
