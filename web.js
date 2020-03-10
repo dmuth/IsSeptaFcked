@@ -1,19 +1,24 @@
 
 var express = require('express');
-var logger = require("./lib/logger.js");
+var morgan = require("morgan");
 var septa_rr = require("./lib/septa/rr/main.js");
 var septa_bus = require("./lib/septa/bus/main.js");
 
 var util = require("util");
 
+var app = express();
 //
-// Install our custom logger so we can get the source IP behind a proxy.
+// Trust the proxy to provide the proper source IP as per:
 //
-logger.go(express.logger);
+// https://stackoverflow.com/questions/27588434/logging-with-morgan-only-shows-127-0-0-1-for-remote-addr-in-nodejs
+//
+app.enable("trust proxy");
+app.use(morgan(':remote-addr :method :url :status :res[content-length] - :response-time ms'));
 
 
-var app = express.createServer(express.logger());
-
+app.set('view options', {
+  layout: true
+  });
 
 //
 // Are we running in production
@@ -23,15 +28,15 @@ var production = false;
 //
 // Check our environment.
 //
-app.configure("development", function() {
+if (app.get("env") != "production") {
 	console.log("Running in development mode!");
 	//production = true; // Debugging
-});
+};
 
-app.configure("production", function() {
+if (app.get("env") == "production") {
 	console.log("Running in PRODUCTION mode!");
 	production = true;
-});
+};
 
 
 //
