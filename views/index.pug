@@ -20,22 +20,22 @@ div(class="row row-status")
 		h2 Regional Rail Is:
 
 		if ( rr_status_class == "status-not-fcked")
-			div(class="status #{rr_status_class}") #{rr_status}
+			div(class="status " + rr_status_class) #{rr_status}
 
 		else if ( rr_status_class == "status-a-little-fcked")
-			div(class="status #{rr_status_class}") #{rr_status}
+			div(class="status " + rr_status_class) #{rr_status}
 
 		else if ( rr_status_class == "status-fcked")
-			div(class="status #{rr_status_class}") #{rr_status}
+			div(class="status " + rr_status_class) #{rr_status}
 
 		else if ( rr_status_class == "status-turbo-fcked")
-			div(class="status #{rr_status_class}") #{rr_status}
+			div(class="status " + rr_status_class) #{rr_status}
 
 		else
 			//
 			// Unknown
 			//
-			div(class="status #{rr_status_class}") #{rr_status}
+			div(class="status " + rr_status_class) #{rr_status}
 
 
 		if (rr_late)
@@ -68,19 +68,19 @@ div(class="row row-status")
 		h2 Buses Are:
 
 		if ( bus_status_class == "status-not-fcked")
-			div(class="status #{bus_status_class}") #{bus_status}
+			div(class="status " + bus_status_class) #{bus_status}
 
 		else if ( bus_status_class == "status-a-little-fcked")
-			div(class="status #{bus_status_class}") #{bus_status}
+			div(class="status " + bus_status_class) #{bus_status}
 
 		else if ( bus_status_class == "status-fcked")
-			div(class="status #{bus_status_class}") #{bus_status}
+			div(class="status " + bus_status_class) #{bus_status}
 
 		else
 			//
 			// Unknown
 			//
-			div(class="status #{bus_status_class}") #{bus_status}
+			div(class="status " + bus_status_class) #{bus_status}
 
 		if (bus_suspended)
 			each bus in bus_suspended

@@ -66,7 +66,7 @@ function responseRender(is_sfw, time_t, data, request, response) {
 			title = sfw.filter(title);
 		}
 
-		response.render("index.jade", {
+		response.render("index.pug", {
 				"title": title,
 
 				//

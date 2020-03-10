@@ -41,7 +41,7 @@ function go(request, response) {
 		title = sfw.filter(title);
 	}
 
-	response.render("api.jade", {
+	response.render("api.pug", {
 		"title_home": title_home,
 		"title": title,
 		"production": production,
