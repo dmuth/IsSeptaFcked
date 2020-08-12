@@ -68,6 +68,14 @@ a:hover {
 	font-size: smaller;
 }
 
+.alert.alert-danger a:link {
+	color: black;
+}
+
+.alert.alert-danger a:hover {
+	color: blue;
+}
+
 
 /**
 * I discovered a problem where, when viewing on an iPad, 
