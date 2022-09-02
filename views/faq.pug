@@ -7,114 +7,135 @@ include layout
 
 div#faq(class="row row-status")
 
-	div(class="col-md-1 col-xs-1")
-	div(class="col-md-11 col-xs-11 text-left" style="padding-left: 0px; padding-right: 30px; ")
-		h2.title Frequently Asked Questions
+    div(class="col-md-1 col-xs-1")
+    div(class="col-md-11 col-xs-11 text-left" style="padding-left: 0px; padding-right: 30px; ")
+        h2.title Frequently Asked Questions
 
-		h3.faq-question So what exactly is this site?
-		div.faq-answer
-			| This site takes data on Regional Rail trains from 
-			a(href="http://www3.septa.org/hackathon/") SEPTA's API
-			| , and turns it into a dashboard that provides an easy way to 
-			| view the status of the entire Regional Rail system.
-			p
-			| If you're not from the Philly area, SEPTA stands for "Southeastern Pennsylvania Transportation Authority" and it is the public transit system that serves Philadelphia and the outlying suburbs.
+        h3.faq-question So what exactly is this site?
+        div.faq-answer
+            | This site takes data on Regional Rail trains from 
+            a(href="http://www3.septa.org/hackathon/") SEPTA's API
+            | , and turns it into a dashboard that provides an easy way to 
+            | view the status of the entire Regional Rail system.
+            p
+            | If you're not from the Philly area, SEPTA stands for "Southeastern Pennsylvania Transportation Authority" and it is the public transit system that serves Philadelphia and the outlying suburbs.
 
-		h3.faq-question Who created it?
-		div.faq-answer
-			| Me, 
-			a(href="http://www.dmuth.org/") Douglas Muth
-			| . I live in Ardmore and take the Regional Rail 
-			| in to Center City for work each day.
+        h3.faq-question Who created it?
+        div.faq-answer
+            | Me, 
+            a(href="http://www.dmuth.org/") Douglas Muth
+            | . I live in Ardmore and take the Regional Rail 
+            | in to Center City for work each day.
 
-		h3.faq-question What technology did you use to create it?
-		div.faq-answer
-			p
-				| I used 
-				a(href="http://nodejs.org/") node.js
-				|  with the 
-				a(href="http://expressjs.com/") ExpressJS webserver
-				|  and the 
-				a(href="http://jade-lang.com/") Jade template engine
-				|  and deployed the whole thing on 
-				a(href="http://www.heroku.com/") Heroku
-				| .
-				| Node let me do some cool things such as asynchronously 
-				| fetching data from SEPTA's API in the same process, 
-				| without having to use crontabs. Or a even database for that matter.
-			p
-				| If you're curious, my source code can be downloaded from 
-				a(href="https://github.com/dmuth/IsSeptaFcked") here
-				| .
+        h3.faq-question What technology did you use to create it?
+        div.faq-answer
+            p
+                | I used 
+                a(href="http://nodejs.org/") node.js
+                |  with the 
+                a(href="http://expressjs.com/") ExpressJS webserver
+                |  and the 
+                a(href="http://jade-lang.com/") Jade template engine
+                |  and deployed the whole thing on 
+                a(href="http://www.heroku.com/") Heroku
+                | .
+                | Node let me do some cool things such as asynchronously 
+                | fetching data from SEPTA's API in the same process, 
+                | without having to use crontabs. Or a even database for that matter.
+            p
+                | If you're curious, my source code can be downloaded from 
+                a(href="https://github.com/dmuth/IsSeptaFcked") here
+                | .
 
-		h3.faq-question Are there any other sites like this out there?
-		div.faq-answer
-			p
-				| Yep!  There's 
-				a(href="http://istheltrainfucked.com/") IsTheLTrainFucked.com
-				| , which inspired me to make this site, along with 
-				a(href="http://howfuckedismetro.com/") HowFuckedIsMetro.com
-				| , which gave me a few additional ideas and things to think about.
-				| If you live in New York City or Washington, D.C. you may want to 
-				| take a look at those sites.
-			p
-				| If you live in New Jersey, you may want to check out 
-				a(href="https://newbrunswickbuses.com/") New Brunswick Buses 
-				| or 
-				a(href="https://njtranshit.com/") NJ Transhit
-				| .
-			p 
-				| As of 2016, there is also the sister site to this one: 
-				a(href="http://www.SeptaStats.com/") Septastats.com
+        h3.faq-question Are there any other sites like this out there?
+        div.faq-answer
+            p
+                | Yep!  There's 
+                a(href="http://istheltrainfucked.com/") IsTheLTrainFucked.com
+                | , which inspired me to make this site, along with 
+                a(href="http://howfuckedismetro.com/") HowFuckedIsMetro.com
+                | , which gave me a few additional ideas and things to think about.
+                | If you live in New York City or Washington, D.C. you may want to 
+                | take a look at those sites.
+            p
+                | If you live in New Jersey, you may want to check out 
+                a(href="https://newbrunswickbuses.com/") New Brunswick Buses 
+                | or 
+                a(href="https://njtranshit.com/") NJ Transhit
+                | .
+            p 
+                | As of 2016, there is also the sister site to this one: 
+                a(href="http://www.SeptaStats.com/") Septastats.com
 
 
-		h3.faq-question Don't think you think "fucked" is a strong word?
-		div.faq-answer
-			| It seems appropriate when many trains are running 30 minutes late
-			| and all you want to do is get home.
+        h3.faq-question Don't think you think "fucked" is a strong word?
+        div.faq-answer
+            | It seems appropriate when many trains are running 30 minutes late
+            | and all you want to do is get home so you can watch the latest episode of Rick and Morty.
 
-		h3.faq-question Have you tried complaining to SEPTA before?
-		div.faq-answer
-			p
-				| I used to have a blurb here about how awful SEPTA was at 
-				| customer communications and addressing problems, but that's so 2011.
-			p
-				| But then SEPTA has started to drink the social media Kool-Aid, and it's paid off. 
-				| Exhibit A is the 
-				a(href="https://twitter.com/SEPTA_SOCIAL") SEPTA_Social Twitter account
-				| .  They monitor Twitter for complaints about SEPTA and 
-				| respond to them in a timely manner, and sometimes with a 
-				| sense of humor.  I believe that their Twitter feed alone 
-				| has changed public opion about SEPTA substantially.  Good form!
+        h3.faq-question Have you tried complaining to SEPTA before?
+        div.faq-answer
+            p
+                | I used to have a blurb here about how awful SEPTA was at 
+                | customer communications and addressing problems, but that's so 2011.
+            p
+                | But then SEPTA has started to drink the social media Kool-Aid, and it's paid off. 
+                | Exhibit A is the 
+                a(href="https://twitter.com/SEPTA_SOCIAL") SEPTA_Social Twitter account
+                | .  They monitor Twitter for complaints about SEPTA and 
+                | respond to them in a timely manner, and sometimes with a 
+                | sense of humor.  I believe that their Twitter feed alone     
+                | has changed public opion about SEPTA substantially.  Good form!
 
-			p
-				| Further reading:
-				ul
-					li
-						a(href="http://www.septa.org/media/short/2013/1-28-13.html"
-							) SEPTA Gets "Social"
-					li
-						a(href="http://www.nbcphiladelphia.com/news/local/SEPTAs-Social-Team-Tackles-Complaints-on-Twitter-216171201.html"
-							) SEPTA's Social Team Tackles Tweets About the Heat
-					li
-						a(href="http://planphilly.com/eyesonthestreet/2013/09/06/more-than-just-twitter-septa-builds-its-social-media-portfolio"
-							) More than just Twitter, SEPTA builds its social media portfolio
+            p
+                | Further reading:
+                ul
+                    li
+                        a(href="http://www.septa.org/media/short/2013/1-28-13.html"
+                            ) SEPTA Gets "Social"
+                    li
+                        a(href="http://www.nbcphiladelphia.com/news/local/SEPTAs-Social-Team-Tackles-Complaints-on-Twitter-216171201.html"
+                            ) SEPTA's Social Team Tackles Tweets About the Heat
+                    li
+                        a(href="http://planphilly.com/eyesonthestreet/2013/09/06/more-than-just-twitter-septa-builds-its-social-media-portfolio"
+                            ) More than just Twitter, SEPTA builds its social media portfolio
 
-		h3.faq-question This FAQ sure is shorter thanks to @SEPTA_Social!
-		div.faq-answer
-			p 
-				a(href="http://www.youtube.com/watch?v=K0QHw7iy1Rg") Eeyup!
 
-		h3.faq-question How can I get in touch with you?
-		div.faq-answer
-			p
-				| I can be found on 
-				a(href="http://twitter.com/dmuth") Twitter 
-				| as well as 
-				a(href="http://www.facebook.com/dmuth") Facebook
-				| . I also run 
-				a(href="http://www.dmuth.org/") my own website
-				| .  Feel free to say hello!
+        h3.faq-question This FAQ sure is shorter thanks to @SEPTA_Social!
+        div.faq-answer
+            p 
+                a(href="http://www.youtube.com/watch?v=K0QHw7iy1Rg") Eeyup!
+
+
+        h3.faq-question Have you built anything else?
+        div.faq-answer
+            p
+                | Yep!  I've built a few things you may find interesting:
+                ul
+                    li
+                        <a href="https://httpbin.dmuth.org/">FastAPI Httpbin</a> - HTTP Endpoints for testing of your app
+                    li
+                        <a href="https://diceware.dmuth.org/">Diceware Password Generator</a>
+                    li
+                        <a href="https://septastats.com/">SEPTA Stats</a> - Stats on Philadelphia Public Transit
+                    li
+                        <a href="https://github.com/dmuth/splunk-lab">Splunk Lab</a> - Stand up a Splunk instance in 30 seconds</a>
+                    li
+                        <a href="https://github.com/dmuth/tarsplit">Tarsplit</a> - Split a tarball on file boundaries
+                    li
+                        | ...or just <a href="https://github.com/dmuth">poke around my GitHub</a>!
+
+
+        h3.faq-question How can I get in touch with you?
+        div.faq-answer
+            p
+                | I can be found on 
+                a(href="http://twitter.com/dmuth") Twitter 
+                | as well as 
+                a(href="http://www.facebook.com/dmuth") Facebook
+                | . I also run 
+                a(href="http://www.dmuth.org/") my own website
+                | .  Feel free to say hello!
 
 
 include lib/footer
