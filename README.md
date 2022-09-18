@@ -87,8 +87,7 @@ For fellow nerds out there, here's a brief rundown on how the various
 
 ## In bash in Docker
 
-- `docker build -t septa . && docker run -e TZ=EST5EDT -p 5000:5000 -it -v $(pwd):/mnt -v isf_node_modules:/mnt/node_modules septa bash`
-   - The `-v isf_node_modules:/mnt/node_modules` will put the `node_modules/` directory into a Docker volume, which will persist between runs, cutting down on future startup times.
+- `docker build -t septa . && docker run -e TZ=EST5EDT -p 5000:5000 -it -v $(pwd):/mnt -v $(pwd)/docker_node_modules:/mnt/node_modules septa bash`
    - You now have a shell in the Docker container.  You can run `npm start` or any other command there.
 - Run `npm start` to spin up the webserver on port 5000.
 - <a href="http://localhost:5000/">http://localhost:5000/</a>

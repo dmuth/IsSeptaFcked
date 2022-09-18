@@ -1,4 +1,5 @@
 node_modules
+docker_node_modules
 
 # Steve Jobs
 .DS_Store
