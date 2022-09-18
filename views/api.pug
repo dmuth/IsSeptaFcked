@@ -8,58 +8,28 @@ include layout
 
 div#api(class="row row-status")
 
-	div(class="col-md-1 col-xs-1")
-	div(class="col-md-11 col-xs-11 text-left" style="padding-left: 0px; padding-right: 30px; ")
-		h2.title API
+    div(class="col-md-1 col-xs-1")
+    div(class="col-md-11 col-xs-11 text-left" style="padding-left: 0px; padding-right: 30px; ")
+        h2.title API
 
-		h3.faq-question Why did you write an API?
-		div.faq-answer
-			| I wanted to share the data I generate (determining the 
-			| "fuckedness" of trains) with others.  I found a neat way 
-			| to use SEPTA's data, and maybe someone else will find a 
-			| neat way to use my data.
+        h3.faq-question Why did you write an API?
+        div.faq-answer
+            | I wanted to share the data I generate (determining the 
+            | "fuckedness" of trains) with others.  I found a neat way 
+            | to use SEPTA's data, and maybe someone else will find a 
+            | neat way to use my data.
 
-		h3.faq-question So what are the API endpoints?
-		div.faq-answer
-			ul
-				li(style="padding-bottom: 5px;")
-					a(href="/api/status") /api/status
-					|  Overall status for Regional Rail and Bus System
-					|  (Includes "fuckedness")
-				ul
-					li(style="padding-bottom: 10px;")
-						| If you are doing integrations, this is probably the endpoint you want.
-				li(style="padding-bottom: 10px;")
-					a(href="/api/rr") /api/rr
-					|  Regional Rail Data
-					|  (Includes "fuckedness")
-				ul
-					li(style="padding-bottom: 10px;")
-						a(href="/api/rr/status") /api/rr/status
-						|  Just the "fuckedness" status of Regional Rail.
-					li(style="padding-bottom: 10px;")
-						a(href="/api/rr/raw_data") /api/rr/raw_data
-						|  Regional Rail Raw Data
-						|  (A copy of the data I'm getting from SEPTA)
-				li(style="padding-bottom: 10px;")
-					a(href="/api/bus") /api/bus
-					|  Bus Data
-					|  (Includes "fuckedness")
-				ul
-					li(style="padding-bottom: 10px;")
-						a(href="/api/bus/status") /api/bus/status
-						|  Just the "fuckedness" status of Buses.
-					li(style="padding-bottom: 10px;")
-						a(href="/api/bus/raw_data") /api/bus/raw_data
-						|  Bus Raw Data
-						|  (A copy of the data I'm getting from SEPTA)
+        h3.faq-question So what are the API endpoints?
+        div.faq-answer
+            p An interactive API guide is on the 
+                a(href="/api-docs") API Docs page
 
-		h3.faq-question Are there any restrictions on this API?
-		div.faq-answer
-			| Please try not to hit the API more than once every few minutes.
-			| Otherwise I will have to implement a quota system and that's not fun for anybody.
+        h3.faq-question Are there any restrictions on this API?
+        div.faq-answer
+            | Please try not to hit the API more than once every few minutes.
+            | Otherwise I will have to implement a quota system and that's not fun for anybody.
 
-		p &nbsp;
+        p &nbsp;
 
 include lib/footer
 

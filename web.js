@@ -86,6 +86,13 @@ app.get("/echo", routes["echo"].go);
 app.get("/faq", routes["faq"].go);
 
 
+// Load Swagger API documentation
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+
 //
 // Set this up, mostly for our favicon.
 //
