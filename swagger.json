@@ -1,0 +1,692 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Is SEPTA Fucked? API",
+    "description": "API endpoints for IsSEPTAF*cked.com <a href=\"/\">Return to Main Website</a>"
+  },
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Overall Status",
+      "description": "Overall status of trains and busses"
+    },
+    {
+      "name": "Regional Rail",
+      "description": "Status for Regional Rail"
+    },
+    {
+      "name": "Buses",
+      "description": "Status for buses"
+    }
+  ],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+
+  "paths": {
+
+    "/api/status": {
+      "get": {
+        "tags": ["Overall Status"],
+        "summary": "Get overall status of trains and busses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/API-Status"
+            }
+          }
+        }
+      }
+    },
+
+    "/api/rr": {
+      "get": {
+        "tags": ["Regional Rail"],
+        "summary": "Regional Rail train data. (includes fuckedness)",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/API-RR"
+            }
+          }
+        }
+      }
+    },
+    "/api/rr/status": {
+      "get": {
+        "tags": ["Regional Rail"],
+        "summary": "Just the \"fuckedness\" status of Regional Rail",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/API-RR-Status"
+            }
+          }
+        }
+      }
+    },
+    "/api/rr/raw_data": {
+      "get": {
+        "tags": ["Regional Rail"],
+        "summary": "Regional Rail Raw Data (A copy of the data I'm getting from SEPTA)",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/API-RR-Raw"
+            }
+          }
+        }
+      }
+    },
+
+    "/api/bus": {
+      "get": {
+        "tags": ["Buses"],
+        "summary": "Bus data. (includes fuckedness)",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/API-Bus"
+            }
+          }
+        }
+      }
+    },
+    "/api/bus/status": {
+      "get": {
+        "tags": ["Buses"],
+        "summary": "Just the \"fuckedness\" status of Buses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/API-Bus-Status"
+            }
+          }
+        }
+      }
+    },
+    "/api/bus/raw_data": {
+      "get": {
+        "tags": ["Buses"],
+        "summary": "Bus Raw Data (A copy of the data I'm getting from SEPTA)",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/API-Bus-Raw"
+            }
+          }
+        }
+      }
+    }
+
+  },
+
+
+  "definitions": {
+
+    "API-Status": {
+        "properties": {
+            "time": {
+                "$ref": "#/definitions/Time"
+            },
+            "time_t": {
+                "$ref": "#/definitions/Time-t"
+            },
+            "status": {
+                "type": "object",
+                "properties": {
+                    "rr": {
+                        "$ref": "#/definitions/Status-RR"
+                    },
+                    "bus": {
+                        "$ref": "#/definitions/Status-Bus"
+                    }
+                }
+            }
+        },
+        "summary": {
+            "type": "string",
+            "example": "Regional rail is fucked! Buses are a little fucked! 3 out of 13 trains are late! 1 out of 156 bus lines are suspended!"
+        },
+        "summary_rr": {
+            "type": "string",
+            "example": "Buses are a little fucked! 1 out of 156 bus lines are suspended!"
+        },
+        "summary_bus": {
+            "type": "string",
+            "example": "Regional Rail is fucked! 3 out of 13 trains are late!"
+        }
+    },
+
+    "API-RR": {
+        "properties": {
+            "data": {
+                "type": "object",
+                "properties": {
+                    "219": {
+                        "properties": {
+                            "number": {
+                                "type": "integer",
+                                "example": 219
+                            },
+                            "from": {
+                                "type": "string",
+                                "example": "Norristown"
+                            }, 
+                            "to": {
+                                "type": "string",
+                                "example": "Wilmington"
+                            },
+                            "late": {
+                                "type": "integer",
+                                "example": "4"
+                            }
+                        }
+                    },
+                    "220": {
+                        "properties": {
+                            "number": {
+                                "type": "integer",
+                                "example": 220
+                            },
+                            "from": {
+                                "type": "string",
+                                "example": "Wilmington"
+                            }, 
+                            "to": {
+                                "type": "string",
+                                "example": "Norristown"
+                            },
+                            "late": {
+                                "type": "integer",
+                                "example": "4"
+                            }
+                        }
+                    }
+                }
+            },
+            "late_average": {
+                "type": "float",
+                "example": 20.5
+            },
+            "status": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "example": "a little fucked"
+                    },
+                    "late": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example": [
+                            "Train #220: Wilmington to Norristown is 15 minutes late",
+                            "Train #221: Wilmington to Norristown is 16 minutes late"
+                        ]
+                    }
+                }
+            },
+            "css_class": {
+                "type": "string",
+                "example": "status-a-little-fcked"
+            },
+            "summary": {
+                "type": "string",
+                "example": "2 out of 13 trains are late."
+            },
+            "message": {
+                "type": "string",
+                "example": "2 out of 13 trains are late. (Avg: 20.5 min late) Check back here in a few minutes to see if things improve."
+            }
+        }
+    },
+
+    "API-RR-Status": {
+        "properties": {
+            "num": {
+                "type": "integer",
+                "example": 13
+            },
+            "time": {
+                "$ref": "#/definitions/Time"
+            },
+            "time_t": {
+                "$ref": "#/definitions/Time-t"
+            },
+            "late_average": {
+                "type": "float",
+                "example": 20.5
+            },
+            "status": {
+                "$ref": "#/definitions/Status-RR"
+            }
+        }
+    },
+
+    "API-RR-Raw": {
+        "properties": {
+            "data": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/SEPTA-Train-Data"
+                },
+                "example": [
+                    {
+                        "lat": "39.956856333333",
+                        "lon": "-75.1857365",
+                        "trainno": "227",
+                        "service": "LOCAL",
+                        "dest": "Wilmington",
+                        "currentstop": "Gray 30th Street",
+                        "nextstop": "Penn Medicine Station",
+                        "line": "Wilmington/Newark",
+                        "consist": "450,449,398,399",
+                        "heading": "248.60074824881082",
+                        "late": "0",
+                        "SOURCE": "Norristown",
+                        "TRACK": "",
+                        "TRACK_CHANGE": ""
+                    },
+                    {
+                        "lat": "40",
+                        "lon": "-76",
+                        "trainno": "229",
+                        "service": "LOCAL",
+                        "dest": "Ardmore",
+                        "currentstop": "30th Street",
+                        "nextstop": "Wynnewood",
+                        "line": "Paoli/Thorndale",
+                        "consist": "450,449,398,399",
+                        "heading": "248.60074824881082",
+                        "late": "0",
+                        "SOURCE": "Norristown",
+                        "TRACK": "",
+                        "TRACK_CHANGE": ""
+                    }
+                ]
+            }
+        }
+    },
+
+    "SEPTA-Train-Data": {
+        "properties": {
+            "lat": {
+                "type": "string"
+            },
+            "lon": {
+                "type": "string"
+            },
+            "trainno": {
+                "type": "string"
+            },
+            "service": {
+                "type": "string"
+            },
+            "dest": {
+                "type": "string"
+            },
+            "currentstop": {
+                "type": "string"
+            },
+            "nextstop": {
+                "type": "string"
+            },
+            "line": {
+                "type": "string"
+            },
+            "consist": {
+                "type": "string"
+            },
+            "heading": {
+                "type": "float"
+            },
+            "late": {
+                "type": "integer"
+            },
+            "SOURCE": {
+                "type": "string"
+            },
+            "TRACK": {
+                "type": "string"
+            },
+            "TRACK_CHANGE": {
+                "type": "string"
+            }
+        }
+    },
+
+    "API-Bus": {
+        "properties": {
+            "data": {
+                "type": "object",
+                "additionalProperties": {
+                    "$ref": "#/definitions/Bus-Data"
+                },
+                "example": {
+                    "bus_route_1": {
+                        "route": "bus_route_1",
+                        "is_suspended": "N"
+                    },
+                    "bus_route_2": {
+                        "route": "bus_route_2",
+                        "is_suspended": "Y"
+                    }
+                }
+            },
+            "num": {
+                "type": "integer",
+                "example": 150
+            },
+            "num_suspended": {
+                "type": "integer",
+                "example": 1
+            },
+            "suspended": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "example": "bus_route_91"
+                }
+            },
+            "time": {
+                "$ref": "#/definitions/Time"
+            },
+            "time_t": {
+                "$ref": "#/definitions/Time-t"
+            },
+            "status": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "example": "a little fucked"
+                    },
+                    "suspended": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example": [
+                            "Bus route 91 is currently suspended",
+                            "Bus route 69 is currently suspended"
+                            ]
+                    },
+                    "css_class": {
+                        "type": "string",
+                        "example": "status-a-little-fcked"
+                    },
+                    "summary": {
+                        "type": "string",
+                        "example": "1 out of 156 bus lines are suspended!"
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "1 out of 156 bus lines are suspended! You may want to look into alternate forms of transportation."
+                    }
+                }
+            }
+        }
+    },
+
+    "Bus-Data": {
+        "properties": {
+            "route": {
+                "type": "string"
+            },
+            "is_suspended": {
+                "type": "string"
+            }
+        }
+    },
+
+    "API-Bus-Status": {
+        "properties": {
+            "num": {
+                "type": "integer",
+                "example": 150
+            },
+            "num_suspended": {
+                "type": "integer",
+                "example": 1
+            },
+            "time": {
+                "$ref": "#/definitions/Time"
+            },
+            "time_t": {
+                "$ref": "#/definitions/Time-t"
+            },
+            "status": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "example": "a little fucked"
+                    },
+                    "summary": {
+                        "type": "string",
+                        "example": "1 out of 156 bus lines are suspended!"
+                    }
+                }
+            }
+        }
+    },
+
+    "API-Bus-Raw": {
+        "properties": {
+            "data": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/SEPTA-Bus-Data"
+                },
+                "example": [
+                    {
+                        "route": "3",
+                        "route_id": "bus_route_3",
+                        "route_name": "3",
+                        "sequence": "1003",
+                        "mode": "Bus",
+                        "isadvisory": "No",
+                        "isdetour": "Y",
+                        "isalert": "Y",
+                        "issuppend": "N",
+                        "iselevator": "N",
+                        "issuspended": "N",
+                        "isstrike": "N",
+                        "ismodifiedservice": "N",
+                        "isdelays": "N",
+                        "isdiversion": "N",
+                        "isdetouralert": "N",
+                        "last_updated": "Sep 18 2022 12:33PM",
+                        "isSnow": "N",
+                        "description": "33rd-Cecil B. Moore to Frankford Transportation Center",
+                        "alert": "Due to operator unavailability, service is operating with delays.",
+                        "advisory": "<h3>Some HTML goes here</h3>",
+                        "detour": [ {
+                            "location_start": "Front & Diamond Sts",
+                            "location_end": "Front & Diamond Sts",
+                            "start": "7/7/2022  12:13 PM",
+                            "end": "11/8/2022  10:00 AM",
+                            "message": "until further notice, EB transit stop at Front &, Diamond is DISCONTINUED, until further notice",
+                            "reason": "Construction"
+                        } ],
+                        "elevator": []
+                    },
+                    {
+                        "route": "8",
+                        "route_id": "bus_route_8",
+                        "route_name": "8",
+                        "sequence": "1008",
+                        "mode": "Bus",
+                        "isadvisory": "No",
+                        "isdetour": "N",
+                        "isalert": "N",
+                        "issuppend": "N",
+                        "iselevator": "N",
+                        "issuspended": "N",
+                        "isstrike": "N",
+                        "ismodifiedservice": "N",
+                        "isdelays": "N",
+                        "isdiversion": "N",
+                        "isdetouralert": "N",
+                        "last_updated": "Sep 12 2022  1:18PM",
+                        "isSnow": "N",
+                        "description": "Olney Transportation Center to Frankford Transportation Center",
+                        "alert": "",
+                        "advisory": "",
+                        "detour": [],
+                        "elevator": []
+                    }
+                ]
+            }
+        }
+    },
+
+    "SEPTA-Bus-Data": {
+        "properties": {
+            "route": {
+                "type": "string"
+            },
+            "route_id": {
+                "type": "string"
+            },
+            "route_name": {
+                "type": "string"
+            },
+            "sequence": {
+                "type": "string"
+            },
+            "mode": {
+                "type": "string"
+            },
+            "isadvisory": {
+                "type": "string"
+            },
+            "isdetour": {
+                "type": "string"
+            },
+            "isalert": {
+                "type": "string"
+            },
+            "issuppend": {
+                "type": "string"
+            },
+            "iselevator": {
+                "type": "string"
+            },
+            "issuspended": {
+                "type": "string"
+            },
+            "isstrike": {
+                "type": "string"
+            },
+            "ismodifiedservice": {
+                "type": "string"
+            },
+            "isdelays": {
+                "type": "string"
+            },
+            "isdiversion": {
+               "type": "string"
+            },
+            "isdetouralert": {
+                "type": "string"
+            },
+            "last_updated": {
+                "type": "string"
+            },
+            "isSnow": {
+                "type": "string"
+            },
+            "description": {
+                "type": "string"
+            },
+            "alert": {
+                "type": "string"
+            },
+            "advisory": {
+                "type": "string"
+            },
+            "detour": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/SEPTA-Bus-Data-Detour"
+                }
+            },
+            "elevator": {
+                "type": "array"
+            }
+        }
+    },
+
+    "SEPTA-Bus-Data-Detour": {
+        "properties": {
+            "location_start": {
+                "type": "string"
+            },
+            "location_end": {
+                "type": "string"
+            },
+            "start": {
+                "type": "string"
+            },
+            "end": {
+                "type": "string"
+            },
+            "message": {
+                "type": "string"
+            },
+            "reason": {
+                "type": "string"
+            }
+        }
+    },
+
+    "Status-RR": {
+        "properties": {
+            "status": {
+                "type": "string",
+                "example": "fucked"
+            },
+            "summary": {
+                "type": "string",
+                "example": "4 out of 14 trains are late!"
+            }
+        }
+    },
+
+    "Status-Bus": {
+        "properties": {
+            "status": {
+                "type": "string",
+                "example": "a little fucked"
+            },
+            "summary": {
+                "type": "string",
+                "example": "1 out of 156 bus lines are suspended!"
+            }
+        }
+    },
+
+    "Time": {
+        "type": "string",
+        "example": "Sun Sep 18th, 2022 01:14:48 PM"
+    },
+
+    "Time-t": {
+        "type": "integer",
+        "example": 1663521288
+    }
+
+  }
+
+}
+
