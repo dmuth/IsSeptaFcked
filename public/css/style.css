@@ -36,6 +36,10 @@ a:hover {
 	font-size: 5vh;
 }
 
+.row {
+	margin: 0;
+}
+
 .row-status {
 	text-align: center;
 }
