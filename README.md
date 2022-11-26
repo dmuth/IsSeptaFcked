@@ -114,6 +114,16 @@ texting purposes.  Debug code can be found in these files:
 - `lib/septa/bus/text.js`
 
 
+# Deployment in Fly.io
+
+- `flyctl deploy` - Deploy the app
+- `flyctl status` - Check the status of the app
+- `flyctl open` - Open the website in the browser
+- `flyctl ips list` - List IPs
+
+Additional troubleshhoting can be found at [https://fly.io/docs/getting-started/troubleshooting/](https://fly.io/docs/getting-started/troubleshooting/).
+
+
 # Deployment in Heroku
 
 - `brew tap heroku/brew && brew install heroku`
