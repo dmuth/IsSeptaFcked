@@ -4,7 +4,7 @@
   "description": "Status checker for SEPTA's Train View platform",
   "homepage": "http://www.IsSeptaFucked.com/",
   "dependencies": {
-    "express": ">=3.11.0",
+    "express": ">=4.17.3",
     "morgan": "^1.9.1",
     "pug": "^3.0.1",
     "request": "^2.88.2",
