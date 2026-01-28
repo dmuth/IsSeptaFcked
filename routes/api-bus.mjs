@@ -5,25 +5,18 @@
 *
 */
 
-
-var septa = require("../lib/septa/bus/main.js");
-var util = require("util");
+import { getData as septa_bus_getData } from "../lib/septa/bus/main.mjs";
 
 
 /**
 * This function is our main entry point.
 */
-exports.go = function(request, response) {
+export function go(request, response) {
 
-	var retval = "";
+	let retval = "";
 
-	septa.getData().then( (data) => {
+	septa_bus_getData().then( (data) => {
 
-		delete data["data"];
-		delete data["suspended"];
-		delete data["status"]["css_class"];
-		delete data["status"]["suspended"];
-		delete data["status"]["message"];
 		data["_comment"] = "Bus data processed by us";
 
 		retval += JSON.stringify(data, null, 4);
@@ -36,7 +29,7 @@ exports.go = function(request, response) {
 		response.send(retval);
 
 	}).catch(function(error) {
-		console.log("ERROR: api-bus-status.js: go(): " + error);
+		console.log("ERROR: api-rr.js: go(): " + error);
 
 	});
 

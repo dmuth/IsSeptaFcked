@@ -6,19 +6,23 @@
 */
 
 
-var septa = require("../lib/septa/rr/main.js");
-var util = require("util");
+import { getData as septa_rr_getData } from "../lib/septa/rr/main.mjs";
 
 
 /**
 * This function is our main entry point.
 */
-exports.go = function(request, response) {
+export function go(request, response) {
 
 	var retval = "";
 
-	septa.getData().then( (data) => {
+	septa_rr_getData().then( (data) => {
 
+		delete data["data"];
+		delete data["late"];
+		delete data["status"]["css_class"];
+		delete data["status"]["late"];
+		delete data["status"]["message"];
 		data["_comment"] = "Regional Rail data processed by us";
 
 		retval += JSON.stringify(data, null, 4);
@@ -31,7 +35,7 @@ exports.go = function(request, response) {
 		response.send(retval);
 
 	}).catch(function(error) {
-		console.log("ERROR: api-status-rr.js: go(): " + error);
+		console.log("ERROR: api-rr-status.js: go(): " + error);
 
 	});
 

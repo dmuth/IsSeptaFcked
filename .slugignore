@@ -1,6 +1,0 @@
-
-#
-# Don't put any node modules into the slug, since Heroku already has them.
-#
-#node_modules
-

@@ -1,6 +1,7 @@
 {
   "name": "Is-SEPTA-Fucked",
-  "version": "0.0.1",
+  "version": "0.6.7",
+
   "description": "Status checker for SEPTA's Train View platform",
   "homepage": "http://www.IsSeptaFucked.com/",
   "dependencies": {
@@ -16,6 +17,6 @@
     "npm": ">=6.0.0"
   },
   "scripts": {
-    "start": "node ./web.js"
+    "start": "node ./web.mjs"
   }
 }

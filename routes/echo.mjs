@@ -5,13 +5,13 @@
 */
 
 
-var util = require("util");
+import util from "util";
 
 
 /**
 * This function is our main entry point.
 */
-exports.go = function(request, response) {
+export function go(request, response) {
 
 	var retval = "<pre>"
 		+ "Original URL: " + request["originalUrl"] + "\n"

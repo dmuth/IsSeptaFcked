@@ -5,21 +5,23 @@
 *
 */
 
+import { production } from "../lib/config.mjs";
 
-var rr = require("../lib/septa/rr/main.js");
-var bus = require("../lib/septa/bus/main.js");
-var util = require("util");
+import util from "util";
+
+import { getData as septa_rr_getData } from "../lib/septa/rr/main.mjs";
+import { getData as septa_bus_getData } from "../lib/septa/bus/main.mjs";
 
 
 /**
 * This function is our main entry point.
 */
-exports.go = function(request, response) {
+export function go(request, response) {
 
 	var retval = "";
 	var bus_data;
 
-	bus.getData().then( (data) => {
+	septa_bus_getData(this).then( (data) => {
 
 		delete data["data"];
 		delete data["suspended"];
@@ -28,7 +30,7 @@ exports.go = function(request, response) {
 		delete data["status"]["message"];
 		bus_data = data;
 
-		return(rr.getData());
+		return(septa_rr_getData(this));
 
 	}).then( (data) => {
 
@@ -37,7 +39,7 @@ exports.go = function(request, response) {
 		delete data["status"]["css_class"];
 		delete data["status"]["late"];
 		delete data["status"]["message"];
-		rr_data = data;
+		let rr_data = data;
 
 		data = {}
 		data["time"] = rr_data["time"];

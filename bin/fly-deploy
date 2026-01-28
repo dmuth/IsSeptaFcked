@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+# Get our SHA1 and build time for Fly's environment.
+#
+
+# Errors are fatal
+set -e 
+
+export GIT_SHA=$(git rev-parse --short HEAD)
+export BUILD_TIME=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+
+fly deploy \
+    --build-arg GIT_SHA="${GIT_SHA}" \
+    --build-arg BUILD_TIME="${BUILD_TIME}" \
+    --build-arg NODE_ENV="production" 
