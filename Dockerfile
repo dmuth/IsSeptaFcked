@@ -1,5 +1,5 @@
 
-FROM alpine
+FROM node:24-alpine 
 
 ARG GIT_SHA=unknown
 ARG BUILD_TIME=unknown
@@ -9,7 +9,7 @@ ENV GIT_SHA=$GIT_SHA
 ENV BUILD_TIME=$BUILD_TIME
 ENV NODE_ENV=$NODE_ENV
 
-RUN apk --no-cache add nodejs npm bash
+RUN apk --no-cache add bash
 
 WORKDIR /mnt
 
