@@ -1,12 +1,16 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "title": "Is SEPTA Fucked? API",
     "description": "API endpoints for IsSEPTAF*cked.com <a href=\"/\">Return to Main Website</a>"
   },
   "basePath": "/",
   "tags": [
+    {
+      "name": "Meta",
+      "description": "Information about this app itself."
+    },
     {
       "name": "Overall Status",
       "description": "Overall status of trains and busses"
@@ -121,6 +125,28 @@
             "schema": {
               "$ref": "#/definitions/API-Bus-Raw"
             }
+          }
+        }
+      }
+    },
+    "/echo": {
+      "get": {
+        "tags": ["Meta"],
+        "summary": "Echo input and environment for debugging purposes",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/version": {
+      "get": {
+        "tags": ["Meta"],
+        "summary": "Return version, build, and deployment information",
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }

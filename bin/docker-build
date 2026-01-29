@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Errors are fatal
+set -e
+
+echo "# "
+echo "# Building Docker image and running container..."
+echo "# "
+echo "# If you want an interactive bash shell, specify 'bash' as the first arg..."
+echo "# "
+
+docker build -t septa . \
+  --build-arg GIT_SHA="$(git rev-parse --short HEAD)" \
+  --build-arg BUILD_TIME="$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+  && docker run -e TZ=EST5EDT -p 5000:5000 -it \
+  -v $(pwd):/mnt \
+  septa $@
+
+echo "# OK: Done!"
+

@@ -5,23 +5,21 @@
 *
 */
 
-
-var septa = require("../lib/septa/bus/main.js");
-var util = require("util");
+import { getData as septa_rr_getData } from "../lib/septa/rr/main.mjs";
 
 
 /**
 * This function is our main entry point.
 */
-exports.go = function(request, response) {
+export function go(request, response) {
 
 	var retval = "";
 
-	septa.getRawData().then( (in_data) => {
+	septa_rr_getData().then( (in_data) => {
 
-		var data = {};
+		let data = {};
 		data["data"] = in_data;
-		data["_comment"] = "Raw bus data from SEPTA";
+		data["_comment"] = "Raw Regional Rail data from SEPTA";
 
 		retval += JSON.stringify(data, null, 4);
 
@@ -33,7 +31,7 @@ exports.go = function(request, response) {
 		response.send(retval);
 
 	}).catch(function(error) {
-		console.log("ERROR: api-bus-raw.js: go(): " + error);
+		console.log("ERROR: api-rr-raw.js: go(): " + error);
 
 	});
 

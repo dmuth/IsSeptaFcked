@@ -5,34 +5,19 @@
 *
 */
 
-var sfw = require("../lib/sfw.js");
-var util = require("util");
-var septa_rr = require("../lib/septa/rr/main.js");
-var septa_bus = require("../lib/septa/bus/main.js");
-var text_rr = require("../lib/septa/rr/text.js");
-var text_bus = require("../lib/septa/bus/text.js");
+import { production } from "../lib/config.mjs";
 
+import util from "util";
 
-var production = false;
+import { getData as septa_rr_getData } from "../lib/septa/rr/main.mjs";
+import { getStatusClass as text_rr_getStatusClass } from "../lib/septa/rr/text.mjs";
+import { getData as septa_bus_getData } from "../lib/septa/bus/main.mjs";
+import { getStatusClass as text_bus_getStatusClass } from "../lib/septa/bus/text.mjs";
 
-
-/**
-* This function is called when the module is first loaded.
-*
-* @param boolean in_production Are we currently in production mode?
-*/
-module.exports = function(in_production) {
-
-	var retval = {};
-
-	production = in_production;
-
-	retval["go"] = go;
-
-	return(retval);
-
-} // End of exports()
-
+import {
+	is_sfw as sfw_is_sfw, 
+	filter as sfw_filter
+} from "../lib/sfw.mjs";
 
 /**
 * Bring together all of the data that we're going to send to our response
@@ -47,7 +32,7 @@ function responseRender(is_sfw, time_t, data, request, response) {
 		//
 		if (is_sfw) {
 			data = JSON.stringify(data);
-			data = sfw.filter(data);
+			data = sfw_filter(data);
 			data = JSON.parse(data);
 		}
 
@@ -63,7 +48,7 @@ function responseRender(is_sfw, time_t, data, request, response) {
 		//
 		var title = "Is SEPTA Fucked?";
 		if (is_sfw) {
-			title = sfw.filter(title);
+			title = sfw_filter(title);
 		}
 
 		response.render("index.pug", {
@@ -115,7 +100,7 @@ function responseSend(is_sfw, html, response) {
 		// Send our response
 		//
 		if (is_sfw) {
-			html = sfw.filter(html);
+			html = sfw_filter(html);
 		}
 		response.send(html);
 
@@ -128,21 +113,21 @@ function responseSend(is_sfw, html, response) {
 /**
 * Our main entry point.
 */
-function go(request, response) {
+export function go(request, response) {
 
-	var is_sfw = sfw.is_sfw(request);
+	var is_sfw = sfw_is_sfw(request);
 	//is_sfw = true; // Debugging
 	var data = {};
 
 	var time_t = new Date().getTime() / 1000;
 
-	septa_rr.getData(this).then( (in_data) => {
+	septa_rr_getData(this).then( (in_data) => {
 		//
 		// We now have Regional Rail data.
 		//
 		data["rr"] = in_data;
 
-		return(septa_bus.getData(this));
+		return(septa_bus_getData(this));
 
 	}).then( (in_data) => {
 		//
@@ -194,7 +179,7 @@ function getStatusFromRrData(time_t, data) {
 	if (age > max_age) {
 		retval["status"] = "(unknown)";
 		retval["late"] = [];
-		retval["css_class"] = text_rr.getStatusClass(retval["status"]);
+		retval["css_class"] = text_rr_getStatusClass(retval["status"]);
 	}
 
 	return(retval);
@@ -219,7 +204,7 @@ function getStatusFromBusData(time_t, data) {
 	if (age > max_age) {
 		retval["status"] = "(unknown)";
 		retval["late"] = [];
-		retval["css_class"] = text_bus.getStatusClass(retval["status"]);
+		retval["css_class"] = text_bus_getStatusClass(retval["status"]);
 	}
 
 	return(retval);
