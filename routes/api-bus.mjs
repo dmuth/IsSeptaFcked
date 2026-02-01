@@ -21,15 +21,14 @@ export function go(request, response) {
 
 		retval += JSON.stringify(data, null, 4);
 
-		//
-		// As per RFC 4627, this should application/json so that apps can consume it.
-		//
 		response.header("Content-Type", "application/json");
-
 		response.send(retval);
 
 	}).catch(function(error) {
 		console.log("ERROR: api-rr.js: go(): " + error);
+		response.status(502).json({ error: 
+			`Ah jeez, I got an error.  Please report this to the site owner, thanks!  The error is as follows: ${error.toString()}` }
+			);
 
 	});
 
