@@ -3,17 +3,6 @@
 # Errors are fatal
 set -e
 
-
-echo "# "
-echo "# Changing to /app directory..."
-echo "# "
-cd /app
-
-echo "# "
-echo "# Installing modules"
-echo "# "
-npm install
-
 if test "$1"
 then
 	echo "# "

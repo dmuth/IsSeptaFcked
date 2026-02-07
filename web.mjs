@@ -5,7 +5,7 @@ import util from "node:util";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-// CJS local modules: ESM can import them as default (module.exports => default)
+// Load our SEPTA-related modules
 import { boot as septa_rr_boot } from "./lib/septa/rr/main.mjs";
 import { boot as septa_bus_boot } from "./lib/septa/bus/main.mjs";
 
