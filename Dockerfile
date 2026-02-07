@@ -18,5 +18,9 @@ COPY entrypoint.sh /
 # Copy in our code
 COPY . /app/
 
+WORKDIR /app/
+
+RUN npm ci
+
 ENTRYPOINT ["/entrypoint.sh"]
 
