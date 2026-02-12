@@ -154,8 +154,12 @@ export function go(request, response) {
 		console.log(message);
 
 	}).catch(function(error) {
-		console.log(arguments); // More Debugging output
-		console.log("ERROR: web.js: /: " + error);
+  		let stack = error?.stack || String(error);
+  		let url = "https://github.com/dmuth/IsSeptaFcked/issues"
+  		let message = `Ah jeez, we have an uncaught error. Please go to ${url} and report the issue so I can fix it.  Here's the error, BTW:\n${stack}`;
+
+		console.log("ERROR: web.js: /: " + stack);
+		response.status(500).send(message);
 
 	});
 
@@ -203,7 +207,7 @@ function getStatusFromBusData(time_t, data) {
 	//
 	if (age > max_age) {
 		retval["status"] = "(unknown)";
-		retval["late"] = [];
+		retval["suspended"] = [];
 		retval["css_class"] = text_bus_getStatusClass(retval["status"]);
 	}
 
