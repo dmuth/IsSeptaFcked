@@ -22,6 +22,6 @@ fi
 echo "# "
 echo "# Running 'npm start'"
 echo "# "
-npm start
+exec npm start
 
 
