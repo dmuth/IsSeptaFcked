@@ -5,6 +5,8 @@
 import os from "node:os";
 import { createRequire } from "node:module";
 
+import { isTrustProxyEnabled } from "../lib/util.mjs";
+
 const require = createRequire(import.meta.url);
 const pkg = require("../package.json");
 
@@ -23,6 +25,8 @@ export function go(request, response) {
         git_sha: process.env.GIT_SHA ?? null,
         build_time: process.env.BUILD_TIME ?? null,
         env: process.env.NODE_ENV ?? null,
+
+        trust_proxy: isTrustProxyEnabled(),
 
         // Fly-provided deploy/runtime identity
         fly_image_ref: process.env.FLY_IMAGE_REF ?? null,

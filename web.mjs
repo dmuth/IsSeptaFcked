@@ -5,6 +5,9 @@ import util from "node:util";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+// Load a utility function
+import { isTrustProxyEnabled } from "./lib/util.mjs";
+
 // Load our SEPTA-related modules
 import { boot as septa_rr_boot } from "./lib/septa/rr/main.mjs";
 import { boot as septa_bus_boot } from "./lib/septa/bus/main.mjs";
@@ -39,7 +42,11 @@ const app = express();
 //
 // https://stackoverflow.com/questions/27588434/logging-with-morgan-only-shows-127-0-0-1-for-remote-addr-in-nodejs
 //
-app.enable("trust proxy");
+if (isTrustProxyEnabled()) {
+  console.log("TRUST_PROXY env variable is set, enabling trust proxy in Express.");
+  app.enable("trust proxy");
+}
+
 app.use(morgan(":remote-addr :method :url :status :res[content-length] - :response-time ms"));
 
 app.set("view options", { layout: true });
@@ -78,6 +85,17 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // Set this up, mostly for our favicon.
 //
 app.use(express.static(path.join(__dirname, "public")));
+
+//
+// Have an error handler of last resort, in case we miss catching an error further down.
+//
+app.use((err, req, res, next) => {
+  console.error(err);
+  let url = "https://github.com/dmuth/IsSeptaFcked/issues"
+  let stack = err?.stack || String(err);
+  let message = `Ah jeez, we have an uncaught error. Please go to ${url} and report the issue so I can fix it.  Here's the error, BTW:\n${stack}`;
+  res.status(500).send(message);
+});
 
 //
 // Set our Views directory for Jade.
