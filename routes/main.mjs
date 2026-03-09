@@ -5,7 +5,7 @@
 *
 */
 
-import { production } from "../lib/config.mjs";
+import { isProductionEnv } from "../lib/util.mjs";
 
 import util from "util";
 
@@ -73,7 +73,7 @@ function responseRender(is_sfw, time_t, data, request, response) {
 				"bus_message": bus_status["message"],
 
 				"is_sfw": is_sfw,
-				"production": production,
+				"production": isProductionEnv(),
 				"refresh": 300,
 				"uri": request["url"],
 

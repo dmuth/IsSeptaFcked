@@ -5,8 +5,6 @@
 *
 */
 
-import { production } from "../lib/config.mjs";
-
 import util from "util";
 
 import { getData as septa_rr_getData } from "../lib/septa/rr/main.mjs";
@@ -16,32 +14,25 @@ import { getData as septa_bus_getData } from "../lib/septa/bus/main.mjs";
 /**
 * This function is our main entry point.
 */
-export function go(request, response) {
+export async function go(request, response) {
 
-	var retval = "";
-	var bus_data;
+	try {
 
-	septa_bus_getData(this).then( (data) => {
+		const bus_result = await septa_bus_getData(this);
 
-		delete data["data"];
-		delete data["suspended"];
-		delete data["status"]["css_class"];
-		delete data["status"]["suspended"];
-		delete data["status"]["message"];
-		bus_data = data;
+		let bus_data = {};
+		bus_data["status"] = {}
+		bus_data["status"]["status"] = bus_result["status"]["status"];
+		bus_data["status"]["summary"] = bus_result["status"]["summary"];
 
-		return(septa_rr_getData(this));
+		const rr_result = await septa_rr_getData();
 
-	}).then( (data) => {
+		let rr_data = {};
+		rr_data["status"] = {};
+		rr_data["status"]["status"] = rr_result["status"]["status"];
+		rr_data["status"]["summary"] = rr_result["status"]["summary"];
 
-		delete data["data"];
-		delete data["late"];
-		delete data["status"]["css_class"];
-		delete data["status"]["late"];
-		delete data["status"]["message"];
-		let rr_data = data;
-
-		data = {}
+		var data = {};
 		data["time"] = rr_data["time"];
 		data["time_t"] = rr_data["time_t"];
 		data["status"] = {};
@@ -62,18 +53,16 @@ export function go(request, response) {
 			data["status"]["rr"]["summary"]
 			);
 
-		retval += JSON.stringify(data, null, 4);
-
 		response.header("Content-Type", "application/json");
-		response.send(retval);
+		response.send(JSON.stringify(data, null, 4));
 
-	}).catch(function(error) {
+	} catch(error) {
 		console.log("ERROR: api-status.js: go(): " + error);
 		response.status(502).json({ error: 
 			`Ah jeez, I got an error.  Please report this to the site owner, thanks!  The error is as follows: ${error.toString()}` }
 			);
 
-	});
+	}
 
 } // End of go()
 

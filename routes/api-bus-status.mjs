@@ -12,30 +12,32 @@ import { getData as septa_bus_getData } from "../lib/septa/bus/main.mjs";
 /**
 * This function is our main entry point.
 */
-export function go(request, response) {
+export async function go(request, response) {
 
-	let retval = "";
+	try {
 
-	septa_bus_getData().then( (data) => {
-		delete data["data"];
-		delete data["suspended"];
-		delete data["status"]["css_class"];
-		delete data["status"]["suspended"];
-		delete data["status"]["message"];
-		data["_comment"] = "Bus data processed by us";
+		let data = await septa_bus_getData();
 
-		retval += JSON.stringify(data, null, 4);
+		let retval = {};
+		retval["num"] = data["num"];
+		retval["num_suspended"] = data["num_suspended"];
+		retval["time"] = data["time"];
+		retval["time_t"] = data["time_t"];
+		retval["status"] = {};
+		retval["status"]["status"] = data["status"]["status"];
+		retval["status"]["summary"] = data["status"]["summary"];
+		retval["_comment"] = "Bus data processed by us";
 
 		response.header("Content-Type", "application/json");
-		response.send(retval);
+		response.send(JSON.stringify(retval, null, 4));
 
-	}).catch(function(error) {
+	} catch(error) {
 		console.log("ERROR: api-bus-status.js: go(): " + error);
 		response.status(502).json({ error: 
 			`Ah jeez, I got an error.  Please report this to the site owner, thanks!  The error is as follows: ${error.toString()}` }
 			);
 
-	});
+	}
 
 } // End of go()
 
