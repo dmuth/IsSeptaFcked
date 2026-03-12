@@ -1,12 +1,12 @@
 // web.mjs
 import express from "express";
 import morgan from "morgan";
-import util from "node:util";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 // Load a utility function
 import { isTrustProxyEnabled } from "./lib/util.mjs";
+import { isProductionEnv } from "./lib/util.mjs";
 
 // Load our SEPTA-related modules
 import { boot as septa_rr_boot } from "./lib/septa/rr/main.mjs";
@@ -22,6 +22,7 @@ import { go as route_api_rr_raw_go } from "./routes/api-rr-raw.mjs";
 import { go as route_api_bus_go } from "./routes/api-bus.mjs";
 import { go as route_api_bus_status_go } from "./routes/api-bus-status.mjs";
 import { go as route_api_bus_raw_go } from "./routes/api-bus-raw.mjs";
+import { go as route_debug_go } from "./routes/debug.mjs";
 import { go as route_echo_go } from "./routes/echo.mjs";
 import { go as route_faq_go } from "./routes/faq.mjs";
 import { go as route_version_go } from "./routes/version.mjs";
@@ -77,6 +78,10 @@ app.get("/api/bus/raw_data", route_api_bus_raw_go);
 app.get("/echo", route_echo_go);
 app.get("/faq", route_faq_go);
 app.get("/version", route_version_go);
+
+if (!isProductionEnv()) {
+  app.get("/debug", route_debug_go);
+}
 
 // Load Swagger API documentation
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));

@@ -5,7 +5,7 @@
 *
 */
 
-import { production } from "../lib/config.mjs";
+import { isProductionEnv } from "../lib/util.mjs";
 
 import util from "util";
 
@@ -28,7 +28,7 @@ export function go(request, response) {
 	response.render("faq.pug", {
 		"title_home": title_home,
 		"title": title,
-		"production": production,
+		"production": isProductionEnv(),
 		"is_sfw": is_sfw,
 		"uri": request["url"],
 		});
