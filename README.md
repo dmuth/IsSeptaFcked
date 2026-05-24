@@ -98,12 +98,22 @@ texting purposes.  Debug code can be found in these files:
 
 ## Deployment in Fly.io
 
-- ~~`flyctl deploy`~~ - Deploy the app
-- `./bin/fly-deploy` - Deploy the app.  This will set the Git SHA1 and Build Time variables
-- `flyctl status` - Check the status of the app
-- `flyctl log` - Watch the app log in real-time
-- `flyctl apps open` - Open the website in the browser
-- `flyctl ips list` - List IPs
+``` bash
+# Deploy the app.  This will set the Git SHA1 and Build Time variables
+./bin/fly-deploy
+
+# Check the status of the app
+flyctl status
+
+# Watch the app log in real-time
+flyctl log
+
+# Open the website in the browser
+flyctl apps open
+
+# List IPs
+flyctl ips list
+```
 
 Additional troubleshhoting can be found at [https://fly.io/docs/getting-started/troubleshooting/](https://fly.io/docs/getting-started/troubleshooting/).
 
