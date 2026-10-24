@@ -1,5 +1,5 @@
 
-FROM node:24-alpine 
+FROM node:26-alpine 
 
 ARG GIT_SHA=unknown
 ARG BUILD_TIME=unknown

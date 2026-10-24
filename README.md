@@ -106,7 +106,7 @@ texting purposes.  Debug code can be found in these files:
 flyctl status
 
 # Watch the app log in real-time
-flyctl log
+flyctl logs
 
 # Open the website in the browser
 flyctl apps open
