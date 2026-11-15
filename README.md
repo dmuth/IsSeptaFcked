@@ -55,8 +55,11 @@ For fellow nerds out there, here's a brief rundown on how the various node.js mo
 
 ### In Docker Compose
 
-- `docker-compose build && docker-compose up`
-- [http://localhost:5000/](http://localhost:5000/)
+``` bash
+docker-compose build && docker-compose up
+```
+
+Now, go to [http://localhost:5000/](http://localhost:5000/)
 
 ### In Docker
 
@@ -72,10 +75,12 @@ The reason this script exists is to wrap some of the underlying complexity with 
 
 ``` bash
 ./bin/docker-build bash
+
+# Spin up the webserver on port 5000
+cd /mnt && npm start
 ```
 
-- Run `cd /mnt; npm start` to spin up the webserver on port 5000.
-- [http://localhost:5000/](http://localhost:5000/)
+Now, go to [http://localhost:5000/](http://localhost:5000/)
 
 ### The Manual Way
 
@@ -84,17 +89,31 @@ The reason this script exists is to wrap some of the underlying complexity with 
 
 ## Testing
 
-At some point I'd like to have unit testing, but because the functionality of the
-website is relatively limited, at the current time it's quicker to uncomment sections
-of the code that have the string `// Debug` in order to change behavior of the site for
-texting purposes.  Debug code can be found in these files:
+Testing can be done by setting these environment variables to force different kinds of behavior:
 
-- `lib/septa/rr/main.js`
-- `lib/septa/rr/api.js`
-- `lib/septa/rr/text.js`
-- `lib/septa/bus/main.js`
-- `lib/septa/bus/api.js`
-- `lib/septa/bus/text.js`
+- Regional Rail:
+  - `SEPTA_RR_API_STATUS` - Set the HTTP status code of the SEPTA Regional Rail API fetch
+  - `SEPTA_RR_BAD_JSON` - Fake broken JSON from SEPTA Regional Rail API
+  - `SEPTA_RR_API_LATE` - Starting at 0, increment each train's late time by this value.
+  - `SEPTA_RR_API_SECS` - How often to fetch from SEPTA's Regional Rail API
+  - `SEPTA_RR_API_AGE_CHECK_SECS` - How often to check the age of the RR data
+  - `SEPTA_RR_API_AGE_MAX_SECS` - Max possible age of RR data.  If exceeded, SEPTA's API is called again.
+  - `SEPTA_RR_TEXT_AGE_MAX_SECS` - Max possible age of RR data in the text display portion. If exceeded, the output changes.
+  - `SEPTA_RR_NO_DATA_FOUND` - Set to return no RR train data
+  - `SEPTA_RR_DEBUG` - Set to print debug info on the CLI
+- Bus:
+  - `SEPTA_BUS_API_STATUS` - Set the HTTP status code of the SEPTA Regional Rail API fetch
+  - `SEPTA_BUS_BAD_JSON` - Fake broken JSON from SEPTA Regional Rail API
+  - `SEPTA_BUS_API_UNKNOWN` - Make bus statuses be "unknown"
+  - `SEPTA_BUS_API_LATE_CHANGE` - 1 in N chance of suspending a bus
+  - `SEPTA_BUS_API_SECS` - How often to fetch from SEPTA's Bus API
+  - `SEPTA_BUS_API_AGE_CHECK_SECS` - How often to check the age of the Bus data
+  - `SEPTA_BUS_API_AGE_MAX_SECS` - Max possible age of Bus data.  If exceeded, SEPTA's API is called again.
+  - `SEPTA_BUS_TEXT_AGE_MAX_SECS` - Max possible age of Bus data in the text display portion. If exceeded, the output changes.
+  - `SEPTA_BUS_NO_DATA_FOUND` - Set to return no Bus data
+  - `SEPTA_BUS_DEBUG` - Set to print debug info on the CLI
+- Website:
+  - `SEPTA_SITE_SFW` - Set for the SFW site
 
 ## Deployment in Fly.io
 

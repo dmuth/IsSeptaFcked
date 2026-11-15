@@ -17,7 +17,6 @@ import {
 export function go(request, response) {
 
 	let is_sfw = sfw_is_sfw(request);
-	//is_sfw = true; // Debugging
 
 	let title_home = "Is SEPTA Fucked?";
 	let title = "FAQ - " + title_home;

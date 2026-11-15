@@ -116,7 +116,6 @@ function responseSend(is_sfw, html, response) {
 export function go(request, response) {
 
 	var is_sfw = sfw_is_sfw(request);
-	//is_sfw = true; // Debugging
 	var data = {};
 
 	var time_t = new Date().getTime() / 1000;

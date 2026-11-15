@@ -20,7 +20,6 @@ export function go(request, response) {
 		+ "Method: " + request["method"] + "\n"
 		+ "Headers: " + util.inspect(request["headers"]) + "\n"
 		;
-	//retval += util.inspect(request); // Debugging
 
 	response.send(retval);
 
